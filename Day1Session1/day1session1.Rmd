@@ -2,10 +2,13 @@
 title: "Day1 Session 1"
 author: "Melinda Higgins"
 date: "March 4, 2016"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
+library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -28,3 +31,9 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, include=FALSE}
+   # add this chunk to end of mycode.rmd
+   file.rename(from="day1session1.md", 
+               to="README.md")
+```
