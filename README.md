@@ -2,11 +2,13 @@
 ## March 10-11, 2016
 ### given by Melinda Higgins, Ph.D.
 
-> CONTACT INFO:
-> Emory University - School of Nursing
-> Senior Biostatistician/Associate Research Professor
-> 404-727-5180
-> [melinda.higgins@emory.edu](mailto:melinda.higgins@emory.edu)
+<p>
+CONTACT INFO:<br>
+Emory University - School of Nursing<br>
+Senior Biostatistician/Associate Research Professor<br>
+404-727-5180<br>
+[melinda.higgins@emory.edu](mailto:melinda.higgins@emory.edu)
+</p>
 
 - - - 
 This repository contains the files and information provided to the CDC for an Introduction to R and RStudio - workshop held on March 10-11, 2016 in Atlanta, GA.
