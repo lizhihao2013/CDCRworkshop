@@ -9,4 +9,3 @@ This "book" is the assembly of the materials compiled for the R Workshop/Short C
 * [Day 2 Session 2](Day2Session2/README.md)
 * [Day 2 Session 3](Day2Session3/README.md)
 * [Day 2 Session 4](Day2Session4/README.md)
-

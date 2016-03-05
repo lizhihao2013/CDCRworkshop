@@ -1,6 +1,6 @@
 # CDC R Workshop
 ## March 10-11, 2016
-### given by Melinda Higgins, Ph.D.
+#### by Melinda Higgins, Ph.D
 
 <p>
 CONTACT INFO:<br>
