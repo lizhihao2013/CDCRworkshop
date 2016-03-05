@@ -9,7 +9,9 @@
 ## DAY 1 Sessions and Objectives
 
 1. Session 1
-    + objective: Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
+    + welcome and introductions
+    + brief intro to Git and Github
+    + Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
 2. Session 2
     + objective: Initial understanding of what "packages" are, how to load them and use them  
 3. Session 3
