@@ -11,11 +11,22 @@
 1. Session 1
     + welcome and introductions
     + brief intro to Git and Github
-    + Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
+    + Be able to open and work with R and RStudio: familiarization with RStudio interface & environment. 
+        + console
+        + scripts & documents
+        + global environment and history
+        + managing files, packages, plots and output viewer
+        + and getting help
+    + create simple "data"" objects
+    
 2. Session 2
     + objective: Initial understanding of what "packages" are, how to load them and use them  
+    
 3. Session 3
     + objective: Initial understanding of where and how to get help  
+    
+4. Session 4
+    + objectves
 
 ### Agenda Day 1
 - - -
