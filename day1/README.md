@@ -1,16 +1,34 @@
-# WORKSHOP 1: Introduction to R, RStudio and Working in the R Environment
+# Introduction to R and RStudio
 
 <hr>
 
-#### January 22, 2016 <br> 10:00 - 11:50 <br> and makeup session February 17, 2016 <br> 2:00 - 3:50 <br> Nursing Building Room 112
+#### DAY 1: March 10, 2016 <br> 09:00 - 16:00 
 
 <hr>
 
-## Goals for Workshop 1
+## DAY 1 Sessions and Objectives
 
-1. Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
-2. Initial understanding of what "packages" are, how to load them and use them  
-3. Initial understanding of where and how to get help  
+1. Session 1
+    + objective: Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
+2. Session 2
+    + objective: Initial understanding of what "packages" are, how to load them and use them  
+3. Session 3
+    + objective: Initial understanding of where and how to get help  
 
+### Agenda Day 1
+- - -
 
+Times           | Activity
+----------------|-------------------
+0830 - 0900     | Classroom Setup
+0900 - 0910     | Introductions and Welcome
+0910 - 1025     | Session 1
+1025 - 1035     | Break
+1035 - 1200     | Session 2
+1200 - 1250     | Session 3 - part a
+1250 - 1410     | **LUNCH & CDC Staff Meeting (1-2pm)**
+1410 - 1425     | Session 3 - part b
+1425 - 1435     | Break
+1435 - 1600     | Session 4
+1600 - 1630     | Clean up, Shut down classroom
 
