@@ -89,18 +89,23 @@ publishGitbook("melindahiggins2000/gitbook3")
 setwd("C:/MyGithub/CDCRworkshop")
 library(Rgitbook)
 library(knitcitations)
-library(knitr)
-library(xtable)
+library(ggplot2)
+
+
+
+#library(knitr)
+#library(xtable)
 # library(rJava)
 # library(xlsx) - has java problems
 # library(gdata) - needs perl
-library(readxl)
-library(foreign)
+#library(readxl)
+#library(foreign)
+
 rm(list = ls())
 
 # for a bibliography to be added
 # assign it to the global environment first.
-bib <- read.bibtex("mybib.bib")
+bib <- read.bibtex("references.bib")
 
 # clean our cache of previous bibliography
 cleanbib()

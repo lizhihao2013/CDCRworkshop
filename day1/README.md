@@ -18,6 +18,8 @@
         + managing files, packages, plots and output viewer
         + and getting help
     + create simple "data"" objects
+    + make a simple plot
+    + add a package and call new functions
     
 2. Session 2
     + objective: Initial understanding of what "packages" are, how to load them and use them  
