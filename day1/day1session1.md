@@ -898,3 +898,202 @@ Another way to look at a given object is to simply use the data viewer. You can 
 Error in eval(expr, envir, enclos): could not find function "view"
 ```
 
+## Let's make a plot
+
+So far we have created a numeric vector of 21 numbers sequence from 0 to 10 in units of 0.5. This was object `z`. We also created `sinz` which was the sine of these numbers. Let's make a plot of these together. 
+
+
+```r
+> plot(z,sinz)
+```
+
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+
+Let's add some more details to the plot. Look at the help pages for the plot function `help(plot)` to see what options are available. We'll use the code below to add a label to the x-axis, y-axis, plus a title and a subtitle.
+
+
+```r
+> plot(z, sinz, 
++      xlab='Z = Sequence 0 to 10 by 0.5', 
++      ylab='Sin(Z)', 
++      main='Main title', 
++      sub='example subtitle')
+```
+
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+
+We can also add a line and modify the points or markers in the plot. When you review the `help(plot)` help pages towards the bottom there is a "See Also" section which links to the functions `lines()` and `points()`. We'll use these 2 functions to add a colorful line and modify the points on our plot.
+
+
+```r
+> # add a BLUE line using lines()
+> lines(z,sinz,col='blue')
+```
+
+```
+Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
+```
+
+```r
+> # customize the points using points()
+> # plotting character pch 23 is a filled diamond
+> # col defines the color
+> # bg defines the filled or background color
+> points(z,sinz,pch=23,col='red',bg='black')
+```
+
+```
+Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
+```
+
+Let's compile all of the code together into a single code block to make our plot.
+
+
+```r
+> # select code above, right click and "run selection"
+> # or highlight code and click CTRL-R
+> # specifically run the following code all together
+> # the spaces and line returns added for clarity
+> # Note: RStudio helps with good formatting practices
+> 
+> plot(z, sinz,
++      xlab = 'Z = Sequence 0 to 10 by 0.5',
++      ylab = 'Sin(Z)',main='Main title',
++      sub = 'example subtitle')
+> lines(z, sinz, col = 'blue')
+> points(z, sinz, pch = 23, col = 'red', bg = 'black')
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
+
+## The graphics "Plots" window
+
+In graphics "Plots" Window click on "Zoom". This will open the plot into a separate window. Once this window is open, you can right click and either copy the figure or save it. Within the "Plots" window itself you can also click on "Export". From here you can "Save As Image", "Save as PDF" or "Copy to Clipboard." The "Save as Image" gives you lots of options for saving the figure including: PNG, JPEG, TIFF, BMP, Metafile, SVG or EPS and you can change the figure size. _[Note: many journals request pastscript - EPS is the encapsulated postscript format.]_ When you "Copy to Clipboard" you also get options for copying the figure as either a Bitmap (pixel-by-pixel does not scale well) or a Metafile (which is a vectorized format and will scale well).
+
+## Other ways to get graphics out and saved
+
+There are command line ways to save graphical output. You can use any of the "Devices" that R supports. See `help()` on `Devices`. For example, suppose we wanted to save our figure above out as a PDF. We would use the `pdf()` device to do this. Here is the code. You'll notice I ran `dev.off()` at the end to be sure the device is turned back off. You MUST DO THIS for the final file to be created and your figure saved.
+
+
+```r
+> pdf(file = "plot1.pdf")
+> plot(z, sinz,
++      xlab = 'Z = Sequence 0 to 10 by 0.5',
++      ylab = 'Sin(Z)',main='Main title',
++      sub = 'example subtitle')
+> lines(z, sinz, col = 'blue')
+> points(z, sinz, pch = 23, col = 'red', bg = 'black')
+> dev.off()
+```
+
+```
+png 
+  2 
+```
+
+# EXERCISE 2
+
+Look up which "device" will create and save the plot as a JPEG. Use the commands above as your guide and create and save the figure as a JPEG formatted file.
+
+Create a second JPEG where the width is 750 pixels and the height is 500 pixels and set the background color to yellow and the quality to 50.
+
+# ANSWER KEY for EXERCISE 2
+
+
+```r
+> jpeg(file = "plot1.jpg")
+> plot(z, sinz,
++      xlab = 'Z = Sequence 0 to 10 by 0.5',
++      ylab = 'Sin(Z)',main='Main title',
++      sub = 'example subtitle')
+> lines(z, sinz, col = 'blue')
+> points(z, sinz, pch = 23, col = 'red', bg = 'black')
+> dev.off()
+```
+
+```
+png 
+  2 
+```
+
+```r
+> jpeg(file = "plot1yellow.jpg", 
++      width=750, height=500,
++      bg = "yellow",
++      quality = 50)
+> plot(z, sinz,
++      xlab = 'Z = Sequence 0 to 10 by 0.5',
++      ylab = 'Sin(Z)',main='Main title',
++      sub = 'example subtitle')
+> lines(z, sinz, col = 'blue')
+> points(z, sinz, pch = 23, col = 'red', bg = 'black')
+> dev.off()
+```
+
+```
+png 
+  2 
+```
+
+## Adding packages
+
+Just like SAS and SPSS have a base software to which you can add additional packages and "add-ons" to add additional functionality and features to your software, R comes with a base set of functions to which you can add literally thousands of packages and hundreds of thousands of additional functions and features.
+
+As of March 8, 2016, there are 8054 packages available from [CRAN](https://cran.r-project.org/web/packages/). Many other packages are also available on Github. Hadley Wickham's "R Packages" book has some excellent information on writing and publishing your own packages. See [http://r-pkgs.had.co.nz/git.html](http://r-pkgs.had.co.nz/git.html). 
+
+Still even more packages are available from [Bioconductor](https://www.bioconductor.org/). Currently, they list over 1104 pacakges available from their repositories.
+
+### Let's install `ggplot2` package
+
+`ggplot2` is another excellent graphics package by Hadley Wickham. The main CRAN site for this package is at [https://cran.r-project.org/web/packages/ggplot2/index.html](https://cran.r-project.org/web/packages/ggplot2/index.html). Hadley also has an entire website devoted to this package at [http://ggplot2.org/](http://ggplot2.org/) and he maintains the Github repository for package development at [https://github.com/hadley/ggplot2](https://github.com/hadley/ggplot2).
+
+In general I recommend installing the most current version hosted at CRAN. We can do this using the menus "Tools"/"Install Packages". This opens a window where you can start typing in the package you want. RStudio will begin providing a list of packages that match that name and you can then pick the one you want and click "install." Take note of where on your hard drive the package is installed.
+
+This process runs the following command which will also install the `ggplot2` package. 
+
+
+```r
+> install.packages("ggplot2")
+```
+
+Before we can use the added functions in this new package, we must "load" the package into our R session. For this we use the `library()` command. You'll notice that we used `"` quotes when we typed in the name of the package in `install.packages()` but we leave these off when we call the `library()` command. _Yes, it is a nuiance of R..._
+
+
+```r
+> library(ggplot2)
+```
+
+Let's look at the help window for this new package. Run the following code. 
+
+
+```r
+> help(package = "ggplot2")
+```
+
+Now that we've got `ggplot2` loaded we can use these graphic options and functions to make our plot. Let's try the `qplot` function first. Look at the `help()` pages on `qplot()`. 
+
+We put in `z` and `sinz` like we did last time, but now we can add in the points and lines as "geometrical objects or `geom`s. We can also add a label for the x-axis and y-axis using the `xlab` and `ylab` options and a title using the `main` option. We do not have a subtitle option here.
+
+
+```r
+> qplot(z, sinz,
++       geom = c("point", "line"),
++       xlab = 'Z = Sequence 0 to 10 by 0.5',
++       ylab = 'Sin(Z)',
++       main = 'Main title')
+```
+
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png)
+
+```r
+> title(main = 'a new main title',
++       sub = 'a subtitle added')
+```
+
+```
+Error in title(main = "a new main title", sub = "a subtitle added"): plot.new has not been called yet
+```
+
+
+
+
