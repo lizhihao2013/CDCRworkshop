@@ -422,9 +422,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] dplyr_0.4.3         plyr_1.8.3          foreign_0.8-66     
-## [4] readxl_0.1.0        knitr_1.12.3        ggthemes_3.0.2     
-## [7] ggplot2_2.1.0       knitcitations_1.0.7 Rgitbook_0.9       
+##  [1] sas7bdat_0.5        dplyr_0.4.3         plyr_1.8.3         
+##  [4] foreign_0.8-66      readxl_0.1.0        knitr_1.12.3       
+##  [7] ggthemes_3.0.2      ggplot2_2.1.0       knitcitations_1.0.7
+## [10] Rgitbook_0.9       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.3       magrittr_1.5      devtools_1.10.0  

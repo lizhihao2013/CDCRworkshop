@@ -4,15 +4,165 @@
 
 ### Goals for Session 4
 
+* now that data is read in, create new variables (BMI from Ht and Wt)
+* learn how to attach and detach datasets - temporary loading of data into cache memory
+* exporting data - to *.RData, CSV, TAB delimited
+* introduction to simple summary statistics
+* run a histogram - find an error, fix it USING CODE and update the histogram
+* learn how to add a normal curve and a non-parametric density curve to the histogram
+* create a scatterplot, add the linear fit line and a non-parametric lowess smoothed fit line in different colors - using base R graphics
 * update the scatterplot with the 2 fit lines using ggplot2
 * add panels using facets in ggplot2
 * learn about creating and using variables as factors * looking closer at the linear fit model - the lm objects
 
 ---
 
-### Let's revisit `ggplot2` 
 
-Here is a quick plot of what we had previously using the base R graphics functions.
+
+
+
+
+## Create some new variables and save the output
+
+In the datafile we have weights measures at 2 time points and we have height. We can use this data to compute BMI. Since weight is in pounds and height is in inches, we can use the following formula:
+
+`BMI_PRE=(WeightPRE*703)/((Height*12)*(Height*12))`
+
+From here let's work with `data.csv`. Since we have weights and height we can compute BMI. Let's do that here with weights in pounds and height in decminal feet which we'll convert to inches in the formula given here. You'll notice that I'm selecting the variables using the $ dollar sign. I'm also creating 2 NEW variables `bmiPRE` and `bmiPOST`. By creating them on the left side of the `<-` and using the $ this automatically APPENDS these new variables to the exisiting data frame `data.csv`. When we do this the data frame `data.csv` will go from having 8 variables to 9 and then to 10. Watch the global environment window as you run each line of code below.
+
+
+```r
+data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+```
+
+And we'll do it again for the POST weights:
+
+`BMI_POST=(WeightPOST*703)/((Height*12)*(Height*12))`
+
+
+```r
+data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
+```
+
+#### Isn't there an easier way besides using $?
+
+So, yes, it is a pain to have to type in the data frame followed by a dollar sign $ and then the variable name. If you know for sure you're going to mainly be working with one data frame, you can ATTACH the variables inside data frame to your current environment so you can access the variables withouth having to type the name of the data frame and $ each time. For more info see this blog post at R-boggers [http://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/](http://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/)
+
+Once we attach the dataset, you can call the variables directly. See example below to compute the change in BMI from PRE-to-POST and then find the mean of these differences.
+
+
+```r
+attach(data.csv)
+
+diff <- bmiPOST - bmiPRE
+mean(diff)
+```
+
+```
+## [1] -1.598245
+```
+
+```r
+detach(data.csv)
+```
+
+**ALWAYS remember to DETACH your data frame when finished.**
+
+Now that we have a new variable created the `diff` object, it is sitting in the global environment not attached to the original data frame. We can add it to the data frame `data.csv` as follows:
+
+
+```r
+data.csv$diff <- diff
+```
+
+Now that we've updated our dataset, let's save it using the basic `save()` function - we can save it as a R formatted file `xxx.RData`
+
+## EXPORT or SAVE the updated data
+
+We can save it out as a RData file using the `save()` function.
+
+
+```r
+save(data.csv, 
+     file="C:/MyGithub/CDCRworkshop/datasets/datacsv.RData")
+```
+
+Save the data out in a delimited format. First we'll do a comma delimited CSV file using `write.csv()`.
+
+
+```r
+write.csv(data.csv, 
+          file="C:/MyGithub/CDCRworkshop/datasets/datacsv.csv")
+```
+
+Next we'll do a TAB delimited text file using the `write.table()`.
+
+
+```r
+write.table(data.csv, 
+          file="C:/MyGithub/CDCRworkshop/datasets/datacsv.txt",
+          sep="\t")
+```
+
+
+Now that we've read data in and exported data out of R, let's run some simple stat summaries.
+
+## Some simple statistics
+
+The `summary()` function is a quick simple way to get basic summary statistics on every variable in a dataset.
+
+
+```r
+data.csv <- read.csv(file="C:/MyGithub/CDCRworkshop/datasets/Dataset_01_comma.csv")
+summary(data.csv)
+```
+
+```
+##    SubjectID          Age          WeightPRE       WeightPOST   
+##  Min.   : 1.00   Min.   :24.00   Min.   :110.0   Min.   :108.0  
+##  1st Qu.: 5.75   1st Qu.:35.75   1st Qu.:166.5   1st Qu.:154.8  
+##  Median :10.50   Median :44.00   Median :190.0   Median :190.0  
+##  Mean   :10.50   Mean   :42.10   Mean   :192.9   Mean   :184.7  
+##  3rd Qu.:15.25   3rd Qu.:48.50   3rd Qu.:230.0   3rd Qu.:216.2  
+##  Max.   :20.00   Max.   :52.00   Max.   :260.0   Max.   :240.0  
+##                                                                 
+##      Height           SES         GenderSTR  GenderCoded   
+##  Min.   :2.600   Min.   :1.00   m      :8   Min.   :1.000  
+##  1st Qu.:5.475   1st Qu.:2.00   f      :5   1st Qu.:1.000  
+##  Median :5.750   Median :2.00   F      :2   Median :1.000  
+##  Mean   :5.650   Mean   :1.95          :1   Mean   :1.421  
+##  3rd Qu.:6.125   3rd Qu.:2.00   female :1   3rd Qu.:2.000  
+##  Max.   :6.500   Max.   :3.00   M      :1   Max.   :2.000  
+##                                 (Other):2   NA's   :1
+```
+
+Let's make a histogram of the BMI's at PRE
+
+
+```r
+data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
+hist(data.csv$bmiPRE)
+```
+
+![plot of chunk plot19](figure/plot19-1.png)
+
+There is a typo, so let's fix the Height typo for subject 18. It is currently entered as 2.6 and should be 5.6. After fixing it we will update the BMI calculations and then replot the histogram.
+
+We will also overlay a density curve.
+
+
+```r
+data.csv[18,"Height"] <- 5.6
+data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
+hist(data.csv$bmiPRE, freq=FALSE)
+lines(density(data.csv$bmiPRE))
+```
+
+![plot of chunk plot20](figure/plot20-1.png)
+
+Let's also make a quick scatterplot of BMI at PRE and POST and we'll overlay a linear best fit line using the `lm()` function and a non-parametric smoothed line using the `lowess()` function. We'll wrap the linear fit results with the `abline()` line function to overlay the best fit line and we'll use the `lines()` function to overlay the smoothed line.
 
 
 ```r
@@ -21,7 +171,9 @@ abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
 lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
 ```
 
-![plot of chunk plot22](figure/plot22-1.png)
+![plot of chunk plot21](figure/plot21-1.png)
+
+### Let's revisit `ggplot2` 
 
 Let's recreate this plot using the `ggplot2` package and build up the `geom`s. We'll also add facets or panels by gender using the variable `GenderCoded` in the `data.csv` data frame. Notice that we used the `geom_smooth()` function to add a linear fit line by `method = "lm"`.
 

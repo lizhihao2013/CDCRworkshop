@@ -9,16 +9,8 @@
 * saving your workspace (all objects) and saving specific objects
 * clearing your workspace
 * and then loading back your workspace and/or individual objects already saved (*.RData files)
-* EXAMPLE 3 - create a subset of a given dataset - then save that data object (as a *.RData file), clear your workspace and then load it back.
 * read in data files - CSV, TAB delimited, XLX, XLSX, SAV SPSS, 
-* also reading in a SAS formatted file
-* now that data is read in, create new variables (BMI from Ht and Wt)
-* learn how to attach and detach datasets - temporary loading of data into cache memory
-* exporting data - to *.RData, CSV, TAB delimited
-* introduction to simple summary statistics
-* run a histogram - find an error, fix it USING CODE and update the histogram
-* learn how to add a normal curve and a non-parametric density curve to the histogram
-* create a scatterplot, add the linear fit line and a non-parametric lowess smoothed fit line in different colors - using base R graphics
+* also reading in a SAS formatted file - experimental however
 
 ---
 
@@ -850,156 +842,100 @@ data.spss
 ## 20 male                            Male
 ```
 
-## Create some new variables and save the output
+## IMPORT data from a SAS Transport XPT file format
 
-In the datafile we have weights measures at 2 time points and we have height. We can use this data to compute BMI. Since weight is in pounds and height is in inches, we can use the following formula:
-
-`BMI_PRE=(WeightPRE*703)/((Height*12)*(Height*12))`
-
-From here let's work with `data.csv`. Since we have weights and height we can compute BMI. Let's do that here with weights in pounds and height in decminal feet which we'll convert to inches in the formula given here. You'll notice that I'm selecting the variables using the $ dollar sign. I'm also creating 2 NEW variables `bmiPRE` and `bmiPOST`. By creating them on the left side of the `<-` and using the $ this automatically APPENDS these new variables to the exisiting data frame `data.csv`. When we do this the data frame `data.csv` will go from having 8 variables to 9 and then to 10. Watch the global environment window as you run each line of code below.
+In order to read datafiles from SAS, we will still be using the `foreign` package. The function we will use is `read.xport()`. See more detailed information on the various options by running `help(read.xport)`. You just need to specify the filename. You'll notice that the variable names have been truncated to 8 characters.
 
 
 ```r
-data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+data.xpt <- read.xport(file = "C:/MyGithub/CDCRworkshop/datasets/Dataset_01.xpt")
+data.xpt
 ```
 
-And we'll do it again for the POST weights:
+```
+##    SUBJECTI AGE WEIGHTPR WEIGHTPO HEIGHT SES GENDERST GENDERCO
+## 1         1  45      150      145    5.6   2        m        1
+## 2         2  50      167      166    5.4   2        f        2
+## 3         3  35      143      135    5.6   2        F        2
+## 4         4  44      216      201    5.6   2        m        1
+## 5         5  32      243      223    6.0   2        m        1
+## 6         6  48      165      145    5.2   2        f        2
+## 7         7  50      132      132    5.3   2        m        1
+## 8         8  51      110      108    5.1   3        f        2
+## 9         9  46      167      158    5.5   2                NA
+## 10       10  35      190      200    5.8   1     Male        1
+## 11       11  36      230      210    6.2   1        m        1
+## 12       12  40      200      195    6.1   1        f        2
+## 13       13  45      180      185    5.9   3        f        2
+## 14       14  52      240      220    6.5   2        m        1
+## 15       15  24      250      240    6.4   2        M        1
+## 16       16  35      175      174    5.8   2        F        2
+## 17       17  51      220      221    6.3   2        m        1
+## 18       18  43      230      215    6.2   2        m        1
+## 19       19  36      190      180    5.7   1   female        2
+## 20       20  44      260      240    6.4   3     male        1
+```
 
-`BMI_POST=(WeightPOST*703)/((Height*12)*(Height*12))`
+## **Experimental** SAS Database Reader 
+
+There is a relatively new package called `sas7bdat` which is still listed as experimental for reading the binary SAS formatted files `*.sas7bdat`. To try this package, install it `install.packages("sas7bdat")` and then load it `library(sas7bdat)`. Once loaded you can use the `read.sas7bdat()` function as follows.
+
+_**This did NOT work for me as you'll see below - thus more work is needed before this package will be useful and bug-free.**_
+
+Read more on the package at [http://biostatmatt.com/archives/tag/sas7bdat](http://biostatmatt.com/archives/tag/sas7bdat)
+
+It looks like this package has been updated and a new one is now hosted at Github - see more at [https://github.com/biostatmatt/sas7bdat.parso](https://github.com/biostatmatt/sas7bdat.parso). 
 
 
 ```r
-data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
-```
-
-#### Isn't there an easier way besides using $?
-
-So, yes, it is a pain to have to type in the data frame followed by a dollar sign $ and then the variable name. If you know for sure you're going to mainly be working with one data frame, you can ATTACH the variables inside data frame to your current environment so you can access the variables withouth having to type the name of the data frame and $ each time. For more info see this blog post at R-boggers [http://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/](http://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/)
-
-Once we attach the dataset, you can call the variables directly. See example below to compute the change in BMI from PRE-to-POST and then find the mean of these differences.
-
-
-```r
-attach(data.csv)
-
-diff <- bmiPOST - bmiPRE
-mean(diff)
+data.sas <- read.sas7bdat(file = "C:/MyGithub/CDCRworkshop/datasets/Dataset_01.sas7bdat")
+  
+data.sas
 ```
 
 ```
-## [1] -1.598245
+##        SubjectID           Age     WeightPRE     WeightPOST        Height
+## 1  5.299809e-315 5.327817e-315 5.336964e-315  1.903598e+185 5.312242e-315
+## 2  5.304989e-315 5.328626e-315 5.337652e-315 -2.353438e-185 5.311983e-315
+## 3  5.307580e-315 5.326198e-315 5.336681e-315  1.903598e+185 5.312242e-315
+## 4  5.310170e-315 5.327655e-315 5.339635e-315  1.903598e+185 5.312242e-315
+## 5  5.311465e-315 5.325712e-315 5.340728e-315  5.339918e-315 5.312760e-315
+## 6  5.312760e-315 5.328302e-315 5.337571e-315  -9.255965e+61 5.311724e-315
+## 7  5.314056e-315 5.328626e-315 5.336235e-315   4.667262e-62 5.311854e-315
+## 8  5.315351e-315 5.328788e-315 5.334616e-315  1.903598e+185 5.311595e-315
+## 9  5.315998e-315 5.327979e-315 5.337652e-315  5.337288e-315 5.312113e-315
+## 10 5.316646e-315 5.326198e-315 5.338583e-315   4.667262e-62 5.312501e-315
+## 11 5.317294e-315 5.326360e-315 5.340202e-315  -9.255965e+61 5.313019e-315
+## 12 5.317941e-315 5.327007e-315 5.338988e-315  1.903598e+185 5.312890e-315
+## 13 5.318589e-315 5.327817e-315 5.338178e-315 -2.353438e-185 5.312631e-315
+## 14 5.319236e-315 5.328950e-315 5.340606e-315  5.339797e-315 5.313408e-315
+## 15 5.319884e-315 5.323122e-315 5.341011e-315 -2.353438e-185 5.313279e-315
+## 16 5.320531e-315 5.326198e-315 5.337976e-315   4.667262e-62 5.312501e-315
+## 17 5.320855e-315 5.328788e-315 5.339797e-315   4.667262e-62 5.313149e-315
+## 18 5.321179e-315 5.327493e-315 5.340202e-315  -9.255965e+61 5.313019e-315
+## 19 5.321503e-315 5.326360e-315 5.338583e-315  -9.255965e+61 5.312372e-315
+## 20 5.321827e-315 5.327655e-315 5.341335e-315 -2.353438e-185 5.313279e-315
+##              SES GenderSTR   GenderCoded
+## 1  5.304989e-315           6.013909e-154
+## 2  5.304989e-315           6.013869e-154
+## 3  5.304989e-315           6.013687e-154
+## 4  5.304989e-315           6.013909e-154
+## 5  5.304989e-315           6.013909e-154
+## 6  5.304989e-315           6.013869e-154
+## 7  5.304989e-315           6.013909e-154
+## 8  5.307580e-315           6.013869e-154
+## 9  5.304989e-315           6.013475e-154
+## 10 5.299809e-315           3.680113e+180
+## 11 5.299809e-315           6.013909e-154
+## 12 5.299809e-315           6.013869e-154
+## 13 5.307580e-315           6.013869e-154
+## 14 5.304989e-315           6.013909e-154
+## 15 5.304989e-315           6.013727e-154
+## 16 5.304989e-315           6.013687e-154
+## 17 5.304989e-315           6.013909e-154
+## 18 5.304989e-315           6.013909e-154
+## 19 5.299809e-315        le 2.066414e+161
+## 20 5.307580e-315           3.680176e+180
 ```
-
-```r
-detach(data.csv)
-```
-
-**ALWAYS remember to DETACH your data frame when finished.**
-
-Now that we have a new variable created the `diff` object, it is sitting in the global environment not attached to the original data frame. We can add it to the data frame `data.csv` as follows:
-
-
-```r
-data.csv$diff <- diff
-```
-
-Now that we've updated our dataset, let's save it using the basic `save()` function - we can save it as a R formatted file `xxx.RData`
-
-## EXPORT or SAVE the updated data
-
-We can save it out as a RData file using the `save()` function.
-
-
-```r
-save(data.csv, 
-     file="C:/MyGithub/CDCRworkshop/datasets/datacsv.RData")
-```
-
-Save the data out in a delimited format. First we'll do a comma delimited CSV file using `write.csv()`.
-
-
-```r
-write.csv(data.csv, 
-          file="C:/MyGithub/CDCRworkshop/datasets/datacsv.csv")
-```
-
-Next we'll do a TAB delimited text file using the `write.table()`.
-
-
-```r
-write.table(data.csv, 
-          file="C:/MyGithub/CDCRworkshop/datasets/datacsv.txt",
-          sep="\t")
-```
-
-
-Now that we've read data in and exported data out of R, let's run some simple stat summaries.
-
-## Some simple statistics
-
-The `summary()` function is a quick simple way to get basic summary statistics on every variable in a dataset.
-
-
-```r
-data.csv <- read.csv(file="C:/MyGithub/CDCRworkshop/datasets/Dataset_01_comma.csv")
-summary(data.csv)
-```
-
-```
-##    SubjectID          Age          WeightPRE       WeightPOST   
-##  Min.   : 1.00   Min.   :24.00   Min.   :110.0   Min.   :108.0  
-##  1st Qu.: 5.75   1st Qu.:35.75   1st Qu.:166.5   1st Qu.:154.8  
-##  Median :10.50   Median :44.00   Median :190.0   Median :190.0  
-##  Mean   :10.50   Mean   :42.10   Mean   :192.9   Mean   :184.7  
-##  3rd Qu.:15.25   3rd Qu.:48.50   3rd Qu.:230.0   3rd Qu.:216.2  
-##  Max.   :20.00   Max.   :52.00   Max.   :260.0   Max.   :240.0  
-##                                                                 
-##      Height           SES         GenderSTR  GenderCoded   
-##  Min.   :2.600   Min.   :1.00   m      :8   Min.   :1.000  
-##  1st Qu.:5.475   1st Qu.:2.00   f      :5   1st Qu.:1.000  
-##  Median :5.750   Median :2.00   F      :2   Median :1.000  
-##  Mean   :5.650   Mean   :1.95          :1   Mean   :1.421  
-##  3rd Qu.:6.125   3rd Qu.:2.00   female :1   3rd Qu.:2.000  
-##  Max.   :6.500   Max.   :3.00   M      :1   Max.   :2.000  
-##                                 (Other):2   NA's   :1
-```
-
-Let's make a histogram of the BMI's at PRE
-
-
-```r
-data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
-data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
-hist(data.csv$bmiPRE)
-```
-
-![plot of chunk plot19](figure/plot19-1.png)
-
-There is a typo, so let's fix the Height typo for subject 18. It is currently entered as 2.6 and should be 5.6. After fixing it we will update the BMI calculations and then replot the histogram.
-
-We will also overlay a density curve.
-
-
-```r
-data.csv[18,"Height"] <- 5.6
-data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
-data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
-hist(data.csv$bmiPRE, freq=FALSE)
-lines(density(data.csv$bmiPRE))
-```
-
-![plot of chunk plot20](figure/plot20-1.png)
-
-Let's also make a quick scatterplot of BMI at PRE and POST and we'll overlay a linear best fit line using the `lm()` function and a non-parametric smoothed line using the `lowess()` function. We'll wrap the linear fit results with the `abline()` line function to overlay the best fit line and we'll use the `lines()` function to overlay the smoothed line.
-
-
-```r
-plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
-abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
-lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
-```
-
-![plot of chunk plot21](figure/plot21-1.png)
-
 
 
