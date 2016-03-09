@@ -53,7 +53,15 @@ Once we attach the dataset, you can call the variables directly. See example bel
 
 ```r
 attach(data.csv)
+```
 
+```
+## The following object is masked from Arthritis:
+## 
+##     Age
+```
+
+```r
 diff <- bmiPOST - bmiPRE
 mean(diff)
 ```

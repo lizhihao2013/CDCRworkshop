@@ -151,8 +151,8 @@ dev.off()
 ```
 
 ```
-## png 
-##   2
+## RStudioGD 
+##         2
 ```
 
 # EXERCISE 2
@@ -176,8 +176,8 @@ dev.off()
 ```
 
 ```
-## png 
-##   2
+## RStudioGD 
+##         2
 ```
 
 ```r
@@ -195,8 +195,8 @@ dev.off()
 ```
 
 ```
-## png 
-##   2
+## RStudioGD 
+##         2
 ```
 
 ## Adding packages
@@ -419,25 +419,44 @@ sessionInfo()
 ## [5] LC_TIME=English_United States.1252    
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
 ## 
 ## other attached packages:
-##  [1] sas7bdat_0.5        dplyr_0.4.3         plyr_1.8.3         
-##  [4] foreign_0.8-66      readxl_0.1.0        knitr_1.12.3       
-##  [7] ggthemes_3.0.2      ggplot2_2.1.0       knitcitations_1.0.7
-## [10] Rgitbook_0.9       
+##  [1] lubridate_1.5.0     gplots_2.17.0       multcomp_1.4-4     
+##  [4] TH.data_1.0-7       MASS_7.3-45         mvtnorm_1.0-5      
+##  [7] effects_3.0-7       corrgram_1.8        car_2.1-1          
+## [10] mapproj_1.2-4       maps_3.1.0          gmodels_2.16.2     
+## [13] vcd_1.4-1           doBy_4.5-14         psych_1.5.8        
+## [16] pastecs_1.3-18      boot_1.3-17         Hmisc_3.17-2       
+## [19] Formula_1.2-1       survival_2.38-3     lattice_0.20-33    
+## [22] sas7bdat_0.5        dplyr_0.4.3         plyr_1.8.3         
+## [25] foreign_0.8-66      readxl_0.1.0        knitr_1.12.3       
+## [28] ggthemes_3.0.2      ggplot2_2.1.0       knitcitations_1.0.7
+## [31] Rgitbook_0.9       
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.3       magrittr_1.5      devtools_1.10.0  
-##  [4] munsell_0.4.2     colorspace_1.2-6  R6_2.1.2         
-##  [7] bibtex_0.4.0      highr_0.5.1       stringr_1.0.0    
-## [10] httr_1.1.0        tools_3.2.3       parallel_3.2.3   
-## [13] grid_3.2.3        gtable_0.1.2      DBI_0.3.1        
-## [16] digest_0.6.9      assertthat_0.1    RJSONIO_1.3-0    
-## [19] formatR_1.2.1     RefManageR_0.10.5 bitops_1.0-6     
-## [22] RCurl_1.95-4.7    memoise_1.0.0     evaluate_0.8     
-## [25] labeling_0.3      stringi_1.0-1     scales_0.3.0     
-## [28] XML_3.98-1.3      lubridate_1.5.0
+##  [1] nlme_3.1-125        bitops_1.0-6        pbkrtest_0.4-6     
+##  [4] devtools_1.10.0     RColorBrewer_1.1-2  httr_1.1.0         
+##  [7] tools_3.2.3         R6_2.1.2            rpart_4.1-10       
+## [10] KernSmooth_2.23-15  DBI_0.3.1           lazyeval_0.1.10    
+## [13] mgcv_1.8-9          colorspace_1.2-6    nnet_7.3-11        
+## [16] gridExtra_2.2.1     mnormt_1.5-3        quantreg_5.21      
+## [19] formatR_1.2.1       TSP_1.1-4           SparseM_1.7        
+## [22] sandwich_2.3-4      labeling_0.3        caTools_1.17.1     
+## [25] scales_0.3.0        lmtest_0.9-34       stringr_1.0.0      
+## [28] digest_0.6.9        minqa_1.2.4         lme4_1.1-11        
+## [31] bibtex_0.4.0        highr_0.5.1         zoo_1.7-12         
+## [34] gtools_3.5.0        acepack_1.3-3.3     dendextend_1.1.8   
+## [37] RCurl_1.95-4.7      magrittr_1.5        Matrix_1.2-3       
+## [40] Rcpp_0.12.3         munsell_0.4.2       RefManageR_0.10.5  
+## [43] stringi_1.0-1       whisker_0.3-2       RJSONIO_1.3-0      
+## [46] parallel_3.2.3      gdata_2.17.0        splines_3.2.3      
+## [49] codetools_0.2-14    XML_3.98-1.3        gclus_1.3.1        
+## [52] evaluate_0.8        latticeExtra_0.6-28 nloptr_1.0.4       
+## [55] foreach_1.4.3       MatrixModels_0.4-1  gtable_0.1.2       
+## [58] assertthat_0.1      seriation_1.2-0     iterators_1.0.8    
+## [61] registry_0.3        memoise_1.0.0       cluster_2.0.3
 ```
 
 
