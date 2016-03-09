@@ -2,30 +2,23 @@
 # Day1 Session 3
 ---
 
-### Summary of Sessions 1 & 2
-
-Here is what we've learned how to do so far:
-* Quick introduction to Git and Github
-* Quick overview of R, RStudio, how to install and get started
-* Getting acquainted with R and the RStudio interface
-* Using R codes to do math and run calculations
-* Looking up the named constants in R and getting help
-* Create different kinds of data objects in R
-* Using commands and the Global Environment to understand the data object types and classes and structure
-* Create lists and data frames built from other objects
-* View your data in R
-* Getting started with plots and graphics in R including saving your plots out in various graphics formats
-* Install and load new packages for added functionality in R
-* Getting started with `ggplot2` a workhorse package for R graphics with added themes from the `ggthemes` package
-* Learning how to cite the R base software and your added packages and listing your current session environment details and information.
- 
----
-
 ### Goals for Session 3
 
-* a
-* b
-* c
+* more on managing your environment and cleaning up data objects
+* selecting elements within data objects - select a column, select a row, select a section
+* saving your workspace (all objects) and saving specific objects
+* clearing your workspace
+* and then loading back your workspace and/or individual objects already saved (*.RData files)
+* EXAMPLE 3 - create a subset of a given dataset - then save that data object (as a *.RData file), clear your workspace and then load it back.
+* read in data files - CSV, TAB delimited, XLX, XLSX, SAV SPSS, 
+* also reading in a SAS formatted file
+* now that data is read in, create new variables (BMI from Ht and Wt)
+* learn how to attach and detach datasets - temporary loading of data into cache memory
+* exporting data - to *.RData, CSV, TAB delimited
+* introduction to simple summary statistics
+* run a histogram - find an error, fix it USING CODE and update the histogram
+* learn how to add a normal curve and a non-parametric density curve to the histogram
+* create a scatterplot, add the linear fit line and a non-parametric lowess smoothed fit line in different colors - using base R graphics
 
 ---
 

@@ -4,9 +4,9 @@
 
 ### Goals for Session 4
 
-* a
-* b
-* c
+* update the scatterplot with the 2 fit lines using ggplot2
+* add panels using facets in ggplot2
+* learn about creating and using variables as factors * looking closer at the linear fit model - the lm objects
 
 ---
 

@@ -13,10 +13,14 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 ### Goals for Session 2
 
 * View your data in R
-* Getting started with plots and graphics in R including saving your plots out in various graphics formats
-* Install and load new packages for added functionality in R
-* Getting started with `ggplot2` a workhorse package for R graphics with added themes from the `ggthemes` package
-* Learning how to cite the R base software and your added packages and listing your current session environment details and information.
+* getting started with R graphics and making plots
+* editing and adding features and labels and colors and symbols to your plots
+* save your plots out in various graphical formats - introduction to working with the "graphics" device 
+package
+* exercise 2 - create and save a plot out as a JPEG and add options
+* install and load new packages to R (`ggplot2` and `ggthemes`)
+* introduction to `qplot()` and `ggplot()` with geoms and layering approach
+* getting session information and citing the base R package and add-on packages
 
 --- 
 

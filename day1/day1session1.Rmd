@@ -14,12 +14,15 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 
 * Quick introduction to Git and Github
 * Quick overview of R, RStudio, how to install and get started
-* Getting acquainted with R and the RStudio interface
-* Using R codes to do math and run calculations
+* Getting acquainted with R and the RStudio interface - environment, session, global options, windows and layout
+* Using R codes to do math and run calculations - creating your first R script (*.r file)
 * Looking up the named constants in R and getting help
-* Create different kinds of data objects in R
+* Create and learn about data objects: 
+numbers, vectors, matrices, lists and 
+data frames
 * Using commands and the Global Environment to understand the data object types and classes and structure
-* Create lists and data frames built from other objects
+* Introduction to stringsAsFactors argument
+* Exercise 1 - create a new data object
 
 ---
 

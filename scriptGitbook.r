@@ -117,7 +117,7 @@ cleanbib()
 
 # set clean=TRUE to make sure each RMD file gets rebuilt
 buildRmd(clean=TRUE)
-# buildRmd()
+buildRmd()
 buildGitbook()
 openGitbook()
 
