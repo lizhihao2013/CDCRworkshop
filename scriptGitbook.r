@@ -90,16 +90,17 @@ setwd("C:/MyGithub/CDCRworkshop")
 library(Rgitbook)
 library(knitcitations)
 library(ggplot2)
-
-
-
-#library(knitr)
+library(ggthemes)
+library(knitr)
 #library(xtable)
 # library(rJava)
 # library(xlsx) - has java problems
 # library(gdata) - needs perl
-#library(readxl)
-#library(foreign)
+library(readxl)
+library(foreign)
+
+library(plyr)
+library(dplyr)
 
 rm(list = ls())
 
@@ -116,7 +117,7 @@ cleanbib()
 
 # set clean=TRUE to make sure each RMD file gets rebuilt
 buildRmd(clean=TRUE)
-buildRmd()
+# buildRmd()
 buildGitbook()
 openGitbook()
 
