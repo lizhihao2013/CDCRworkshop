@@ -147,8 +147,8 @@ dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 # EXERCISE 2
@@ -172,8 +172,8 @@ dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 ```r
@@ -191,8 +191,8 @@ dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 ## Adding packages
@@ -418,27 +418,20 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] plyr_1.8.3          dplyr_0.4.3         foreign_0.8-66     
-##  [4] readxl_0.1.0        knitr_1.12.3        ggthemes_3.0.2     
-##  [7] xkcd_0.0.5          extrafont_0.17      ggplot2_2.1.0      
-## [10] knitcitations_1.0.7 Rgitbook_0.9       
+## [1] dplyr_0.4.3         plyr_1.8.3          foreign_0.8-66     
+## [4] readxl_0.1.0        knitr_1.12.3        ggthemes_3.0.2     
+## [7] ggplot2_2.1.0       knitcitations_1.0.7 Rgitbook_0.9       
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.3         RColorBrewer_1.1-2  formatR_1.2.1      
-##  [4] highr_0.5.1         bitops_1.0-6        tools_3.2.3        
-##  [7] rpart_4.1-10        digest_0.6.9        memoise_1.0.0      
-## [10] lubridate_1.5.0     evaluate_0.8        gtable_0.1.2       
-## [13] lattice_0.20-33     bibtex_0.4.0        DBI_0.3.1          
-## [16] yaml_2.1.13         parallel_3.2.3      gridExtra_2.2.1    
-## [19] Rttf2pt1_1.3.3      cluster_2.0.3       RefManageR_0.10.5  
-## [22] httr_1.1.0          stringr_1.0.0       devtools_1.10.0    
-## [25] nnet_7.3-11         grid_3.2.3          R6_2.1.2           
-## [28] XML_3.98-1.3        survival_2.38-3     RJSONIO_1.3-0      
-## [31] latticeExtra_0.6-28 Formula_1.2-1       extrafontdb_1.0    
-## [34] magrittr_1.5        codetools_0.2-14    scales_0.3.0       
-## [37] Hmisc_3.17-2        splines_3.2.3       assertthat_0.1     
-## [40] colorspace_1.2-6    labeling_0.3        stringi_1.0-1      
-## [43] acepack_1.3-3.3     RCurl_1.95-4.7      munsell_0.4.2
+##  [1] Rcpp_0.12.3       magrittr_1.5      munsell_0.4.2    
+##  [4] colorspace_1.2-6  R6_2.1.2          bibtex_0.4.0     
+##  [7] highr_0.5.1       stringr_1.0.0     httr_1.1.0       
+## [10] tools_3.2.3       parallel_3.2.3    grid_3.2.3       
+## [13] gtable_0.1.2      DBI_0.3.1         digest_0.6.9     
+## [16] assertthat_0.1    RJSONIO_1.3-0     formatR_1.2.1    
+## [19] RefManageR_0.10.5 bitops_1.0-6      RCurl_1.95-4.7   
+## [22] evaluate_0.8      labeling_0.3      stringi_1.0-1    
+## [25] scales_0.3.0      XML_3.98-1.3      lubridate_1.5.0
 ```
 
 

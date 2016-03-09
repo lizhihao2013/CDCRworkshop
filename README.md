@@ -7,7 +7,11 @@ CONTACT INFO:<br>
 Emory University - School of Nursing<br>
 Senior Biostatistician/Associate Research Professor<br>
 404-727-5180</p>
-[melinda.higgins@emory.edu](mailto:melinda.higgins@emory.edu)
+eMail: [melinda.higgins@emory.edu](mailto:melinda.higgins@emory.edu)
+
+Web: [http://melindahiggins2000.github.io/web2/](http://melindahiggins2000.github.io/web2/)
+
+Github: [https://github.com/melindahiggins2000](https://github.com/melindahiggins2000)
 
 - - - 
 
