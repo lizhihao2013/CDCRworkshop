@@ -406,7 +406,7 @@ summary(data.csv)
 
 Let's make a histogram of the BMI's at PRE
 
-```{r}
+```{r plot19}
 data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
 data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
 hist(data.csv$bmiPRE)
@@ -416,7 +416,7 @@ There is a typo, so let's fix the Height typo for subject 18. It is currently en
 
 We will also overlay a density curve.
 
-```{r}
+```{r plot20}
 data.csv[18,"Height"] <- 5.6
 data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
 data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
@@ -426,7 +426,7 @@ lines(density(data.csv$bmiPRE))
 
 Let's also make a quick scatterplot of BMI at PRE and POST and we'll overlay a linear best fit line using the `lm()` function and a non-parametric smoothed line using the `lowess()` function. We'll wrap the linear fit results with the `abline()` line function to overlay the best fit line and we'll use the `lines()` function to overlay the smoothed line.
 
-```{r}
+```{r plot21}
 plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
 abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
 lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")

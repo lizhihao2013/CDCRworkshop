@@ -22,7 +22,7 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 
 Here is a quick plot of what we had previously using the base R graphics functions.
 
-```{r}
+```{r plot22}
 plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
 abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
 lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
@@ -30,7 +30,7 @@ lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
 
 Let's recreate this plot using the `ggplot2` package and build up the `geom`s. We'll also add facets or panels by gender using the variable `GenderCoded` in the `data.csv` data frame. Notice that we used the `geom_smooth()` function to add a linear fit line by `method = "lm"`.
 
-```{r}
+```{r plot23to25}
 
 p <- ggplot(data.csv, aes(bmiPRE, bmiPOST))
 p
@@ -62,7 +62,7 @@ table(data.csv$GenderFactor)
 
 Using factors with `ggplot2` is really helpful for segmenting plots into panels or coloring points by this factor (i.e. gender in this case). Here is the code for separating the plot by gender. For now we will include the `NA`s or subjects who were missing gender from their record.
 
-```{r}
+```{r plot26}
 
 p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) + 
   geom_point() + 
@@ -76,7 +76,7 @@ p
 
 This time let's just color the points by gender and then fit the lines separately by gender.
 
-```{r}
+```{r plot27}
 
 p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) + 
   geom_point(aes(colour = GenderFactor)) + 

@@ -80,7 +80,7 @@ So far we have created a numeric vector of 21 numbers sequence from 0 to 10 in u
 plot(z,sinz)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk plot1](figure/plot1-1.png)
 
 Let's add some more details to the plot. Look at the help pages for the plot function `help(plot)` to see what options are available. We'll use the code below to add a label to the x-axis, y-axis, plus a title and a subtitle.
 
@@ -104,7 +104,7 @@ lines(z,sinz,col='blue')
 points(z,sinz,pch=23,col='red',bg='black')
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk plot2](figure/plot2-1.png)
 
 Let's compile all of the code together into a single code block to make our plot.
 
@@ -124,7 +124,7 @@ lines(z, sinz, col = 'blue')
 points(z, sinz, pch = 23, col = 'red', bg = 'black')
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk plot3](figure/plot3-1.png)
 
 ## The graphics "Plots" window
 
@@ -243,7 +243,7 @@ qplot(z, sinz,
       main = 'Main title')
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+![plot of chunk plot7](figure/plot7-1.png)
 
 ## More with `ggplot2`
 
@@ -264,7 +264,7 @@ ggplot(df2, aes(x=z, y=sinz)) +
   theme_light()
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+![plot of chunk plot8](figure/plot8-1.png)
 
 Compare to our previous plot using the base R plot commands.
 
@@ -278,7 +278,7 @@ lines(z, sinz, col = 'blue')
 points(z, sinz, pch = 23, col = 'red', bg = 'black')
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+![plot of chunk plot9](figure/plot9-1.png)
 
 ## Build a plot piece by piece with `ggplot2`
 
@@ -290,7 +290,7 @@ p <- ggplot(df2, aes(x=z, y=sinz))
 p
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
+![plot of chunk plot10](figure/plot10-1.png)
 
 2. Add the geometrical object or `geom` that is a line using the `geom_line()` function. You could assign colors or other "aesthetics" to the line you are adding like line type.
 
@@ -300,7 +300,7 @@ p <- p + geom_line(colour = "red", linetype = "dashed")
 p
 ```
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
+![plot of chunk plot11](figure/plot11-1.png)
 
 3. Add points with various aesthetics for the marker or point shape, as well as changing the color outline and fill color.
 
@@ -312,7 +312,7 @@ p <- p + geom_point(shape = 23,
 p
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+![plot of chunk plot12](figure/plot12-1.png)
 
 4. Next add a label for the x-axis using `xlab`, y-axis using `ylab` and add a title using `ggtitle`.
 
@@ -324,7 +324,7 @@ p <- p + xlab("z is sequence from 0 to 10 in units of 0.5") +
 p
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+![plot of chunk plot13](figure/plot13-1.png)
 
 5. You can also various themes to the plot. Here is one example adding the `theme_light()`.
 
@@ -334,7 +334,7 @@ p <- p + theme_light()
 p
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png)
+![plot of chunk plot14](figure/plot14-1.png)
 
 ## Let's add some creative themes to the plot
 
@@ -347,28 +347,28 @@ p <- p + theme_economist() + ggtitle("The Economist Theme")
 p
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
+![plot of chunk plot15to18](figure/plot15to18-1.png)
 
 ```r
 p <- p + theme_fivethirtyeight() + ggtitle("The 538 Theme")
 p
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-2.png)
+![plot of chunk plot15to18](figure/plot15to18-2.png)
 
 ```r
 p <- p + theme_tufte() + ggtitle("The Edward Tufte Theme")
 p
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-3.png)
+![plot of chunk plot15to18](figure/plot15to18-3.png)
 
 ```r
 p <- p + theme_wsj() + ggtitle("The Wall Street Journal Theme")
 p
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-4.png)
+![plot of chunk plot15to18](figure/plot15to18-4.png)
 
 
 ## Getting session information and citing packages and versions
@@ -429,16 +429,16 @@ sessionInfo()
 ##  [7] rpart_4.1-10        digest_0.6.9        memoise_1.0.0      
 ## [10] lubridate_1.5.0     evaluate_0.8        gtable_0.1.2       
 ## [13] lattice_0.20-33     bibtex_0.4.0        DBI_0.3.1          
-## [16] parallel_3.2.3      gridExtra_2.2.1     Rttf2pt1_1.3.3     
-## [19] cluster_2.0.3       RefManageR_0.10.5   httr_1.1.0         
-## [22] stringr_1.0.0       devtools_1.10.0     nnet_7.3-11        
-## [25] grid_3.2.3          R6_2.1.2            XML_3.98-1.3       
-## [28] survival_2.38-3     RJSONIO_1.3-0       latticeExtra_0.6-28
-## [31] Formula_1.2-1       extrafontdb_1.0     magrittr_1.5       
-## [34] codetools_0.2-14    scales_0.3.0        Hmisc_3.17-2       
-## [37] splines_3.2.3       assertthat_0.1      colorspace_1.2-6   
-## [40] labeling_0.3        stringi_1.0-1       acepack_1.3-3.3    
-## [43] RCurl_1.95-4.7      munsell_0.4.2
+## [16] yaml_2.1.13         parallel_3.2.3      gridExtra_2.2.1    
+## [19] Rttf2pt1_1.3.3      cluster_2.0.3       RefManageR_0.10.5  
+## [22] httr_1.1.0          stringr_1.0.0       devtools_1.10.0    
+## [25] nnet_7.3-11         grid_3.2.3          R6_2.1.2           
+## [28] XML_3.98-1.3        survival_2.38-3     RJSONIO_1.3-0      
+## [31] latticeExtra_0.6-28 Formula_1.2-1       extrafontdb_1.0    
+## [34] magrittr_1.5        codetools_0.2-14    scales_0.3.0       
+## [37] Hmisc_3.17-2        splines_3.2.3       assertthat_0.1     
+## [40] colorspace_1.2-6    labeling_0.3        stringi_1.0-1      
+## [43] acepack_1.3-3.3     RCurl_1.95-4.7      munsell_0.4.2
 ```
 
 

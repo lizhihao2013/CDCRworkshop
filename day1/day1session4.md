@@ -21,7 +21,7 @@ abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
 lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+![plot of chunk plot22](figure/plot22-1.png)
 
 Let's recreate this plot using the `ggplot2` package and build up the `geom`s. We'll also add facets or panels by gender using the variable `GenderCoded` in the `data.csv` data frame. Notice that we used the `geom_smooth()` function to add a linear fit line by `method = "lm"`.
 
@@ -31,14 +31,14 @@ p <- ggplot(data.csv, aes(bmiPRE, bmiPOST))
 p
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk plot23to25](figure/plot23to25-1.png)
 
 ```r
 p <- p + geom_point()
 p
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
+![plot of chunk plot23to25](figure/plot23to25-2.png)
 
 ```r
 p + geom_smooth(method="lm") + 
@@ -46,7 +46,7 @@ p + geom_smooth(method="lm") +
   ggtitle("Panels for Gender")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-3.png)
+![plot of chunk plot23to25](figure/plot23to25-3.png)
 
 It would be nice if we could add better labels for Gender instead of just the numeric codes. One way to do this is to create a new variable in the data frame that is a `FACTOR` that has the labels (or names) for each level of the Gender codes. We'll specify that the levels are 1 for "Male" and 2 for "Female". We can do this using the `factor()` command.
 
@@ -110,7 +110,7 @@ p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) +
 p
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk plot26](figure/plot26-1.png)
 
 This time let's just color the points by gender and then fit the lines separately by gender.
 
@@ -124,7 +124,7 @@ p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) +
 p
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk plot27](figure/plot27-1.png)
 
 ## Take a closer look at the linear fit model
 

@@ -980,7 +980,7 @@ data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
 hist(data.csv$bmiPRE)
 ```
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.png)
+![plot of chunk plot19](figure/plot19-1.png)
 
 There is a typo, so let's fix the Height typo for subject 18. It is currently entered as 2.6 and should be 5.6. After fixing it we will update the BMI calculations and then replot the histogram.
 
@@ -995,7 +995,7 @@ hist(data.csv$bmiPRE, freq=FALSE)
 lines(density(data.csv$bmiPRE))
 ```
 
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.png)
+![plot of chunk plot20](figure/plot20-1.png)
 
 Let's also make a quick scatterplot of BMI at PRE and POST and we'll overlay a linear best fit line using the `lm()` function and a non-parametric smoothed line using the `lowess()` function. We'll wrap the linear fit results with the `abline()` line function to overlay the best fit line and we'll use the `lines()` function to overlay the smoothed line.
 
@@ -1006,7 +1006,7 @@ abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
 lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
 ```
 
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.png)
+![plot of chunk plot21](figure/plot21-1.png)
 
 
 
