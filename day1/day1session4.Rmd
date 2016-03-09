@@ -1,4 +1,4 @@
-```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
 opts_knit$set(base.dir='./', fig.path='', out.format='md')
 opts_chunk$set(prompt=TRUE, comment='', results='markup')
 # See yihui.name/knitr/options for more Knitr options.
@@ -7,39 +7,96 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 
 # end setup chunk
 ```
-# Day1 Session 1
-Melinda Higgins  
-March 4, 2016  
+# Day1 Session 4
+---
 
+### Goals for Session 4
 
+* a
+* b
+* c
 
-## R Markdown
+---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+### Let's revisit `ggplot2` 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Here is a quick plot of what we had previously using the base R graphics functions.
 
-
-```r
-summary(cars)
+```{r}
+plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
+abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
+lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
 ```
 
+Let's recreate this plot using the `ggplot2` package and build up the `geom`s. We'll also add facets or panels by gender using the variable `GenderCoded` in the `data.csv` data frame. Notice that we used the `geom_smooth()` function to add a linear fit line by `method = "lm"`.
+
+```{r}
+
+p <- ggplot(data.csv, aes(bmiPRE, bmiPOST))
+p
+p <- p + geom_point()
+p
+p + geom_smooth(method="lm") + 
+  facet_wrap(~GenderCoded) + 
+  ggtitle("Panels for Gender")
 ```
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
+
+It would be nice if we could add better labels for Gender instead of just the numeric codes. One way to do this is to create a new variable in the data frame that is a `FACTOR` that has the labels (or names) for each level of the Gender codes. We'll specify that the levels are 1 for "Male" and 2 for "Female". We can do this using the `factor()` command.
+
+```{r}
+
+data.csv$GenderFactor <- factor(data.csv$GenderCoded,
+                                levels = c(1,2),
+                                labels = c("Male","Female"))
 ```
 
-## Including Plots
+Let's take a quick look at this new variable. We can simply list it. We can also use the `table()` function to summarize the frequencies (or counts) of the number of subjects for each gender.
 
-You can also embed plots, for example:
+```{r}
+data.csv$GenderFactor
+str(data.csv$GenderFactor)
+class(data.csv$GenderFactor)
+table(data.csv$GenderFactor)
 
-![](day1session1_files/figure-html/pressure-1.png)
+```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Using factors with `ggplot2` is really helpful for segmenting plots into panels or coloring points by this factor (i.e. gender in this case). Here is the code for separating the plot by gender. For now we will include the `NA`s or subjects who were missing gender from their record.
+
+```{r}
+
+p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) + 
+  geom_point() + 
+  geom_smooth(method = "loess", colour = "red", se = FALSE) + 
+  geom_smooth(method = "lm", colour = "blue") + 
+  facet_wrap(~GenderFactor) + 
+  ggtitle("Panels for Gender, RED smoothed line, BLUE linear fit line")
+
+p
+```
+
+This time let's just color the points by gender and then fit the lines separately by gender.
+
+```{r}
+
+p <- ggplot(data.csv, aes(bmiPRE, bmiPOST)) + 
+  geom_point(aes(colour = GenderFactor)) + 
+  geom_smooth(method = "lm", aes(colour = GenderFactor)) + 
+  ggtitle("Colored by Gender")
+
+p
+
+```
+
+## Take a closer look at the linear fit model
+
+```{r}
+fit1 <- lm(bmiPOST ~ bmiPRE, data=data.csv)
+fit1
+summary(fit1)
+coef(fit1)
+anova(fit1)
+
+```
+
 
 

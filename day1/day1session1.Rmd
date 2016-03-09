@@ -1,4 +1,4 @@
-```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
 opts_knit$set(base.dir='./', fig.path='', out.format='md')
 opts_chunk$set(prompt=TRUE, comment='', results='markup')
 # See yihui.name/knitr/options for more Knitr options.
@@ -8,29 +8,18 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 # end setup chunk
 ```
 # Day1 Session 1
-Melinda Higgins  
-March 10, 2016  
 ---
 
-## Introduction to Git and Github
+### Goals for Session 1
 
-For this first part, go to my slide set overview at [http://melindahiggins2000.github.io/web2/teaching/CDCslidesMar2016/#1](http://melindahiggins2000.github.io/web2/teaching/CDCslidesMar2016/#1).
-
-These slides cover the information on:
-* GIT [https://git-scm.com/](https://git-scm.com/)
-* Github [https://github.com/](https://github.com/)
-* Github Desktop Client [https://desktop.github.com/](https://desktop.github.com/)
-
----
-
-## Files, Code and Data for this workshop
-
-You can download all of the data, code and files for this workshop at my Github repository at [https://github.com/melindahiggins2000/CDCRworkshopCode](https://github.com/melindahiggins2000/CDCRworkshopCode). From here click on "Download ZIP" to download everything to your local computer/storage location. You could also "fork" my repository and then "clone" it to your local computer.
-
-I also built a Github repository for this Gitbook "CDC R Workshop". Here are the relevant links:
-* my Github repository for the book [https://github.com/melindahiggins2000/CDCRworkshop](https://github.com/melindahiggins2000/CDCRworkshop)
-* the final Gitbook [https://www.gitbook.com/book/melindahiggins2000/cdcrworkshop/details](https://www.gitbook.com/book/melindahiggins2000/cdcrworkshop/details)
-* and if you'd like to create your own Gitbook [https://www.gitbook.com/](https://www.gitbook.com/)
+* Quick introduction to Git and Github
+* Quick overview of R, RStudio, how to install and get started
+* Getting acquainted with R and the RStudio interface
+* Using R codes to do math and run calculations
+* Looking up the named constants in R and getting help
+* Create different kinds of data objects in R
+* Using commands and the Global Environment to understand the data object types and classes and structure
+* Create lists and data frames built from other objects
 
 ---
 
@@ -304,180 +293,4 @@ df2 <- data.frame(y, month.name, month.abb,
 df2
 str(df2)
 ```
-
-## Ways to view or review data in objects
-
-One way to view a data object is to use the `fix()` command. Running the following code will open a basic editor window (notepad) to view the object `z` and then the object `alist`.
-
-```{r eval = FALSE}
-fix(z)
-fix(alist1)
-```
-
-You've already seen that you can simply type the name of the object to view it in its entirety within the console. However, for larger datasets this can rapidly fill up your console and will significantly slow R down and may even cause R to crash or lock up. So, one way is to look aat only a small portion of the dataset such as the 1st few or the last few rows. We can do that using either the `head()` or `tail()` commands.
-
-Let's look at the `head()` and `tail()` of the `df1` object you just created in EXERCISE 1 above.
-
-```{r}
-head(df1)
-tail(df1)
-```
-
-Another way to look at a given object is to simply use the data viewer. You can either click on the little table icon next to the object in the "Global Environment" window (top right) - OR you can run the `View()` command. You'll notice this command begins with a capital `V` and not the lowercase `v`. R is CaSe sensitive so always check. Try typing in `view(df1)` and see what happens.
-
-```{r eval = FALSE}
-View(df1)
-```
-
-```{r}
-view(df1)
-```
-
-## Let's make a plot
-
-So far we have created a numeric vector of 21 numbers sequence from 0 to 10 in units of 0.5. This was object `z`. We also created `sinz` which was the sine of these numbers. Let's make a plot of these together. 
-
-```{r}
-plot(z,sinz)
-```
-
-Let's add some more details to the plot. Look at the help pages for the plot function `help(plot)` to see what options are available. We'll use the code below to add a label to the x-axis, y-axis, plus a title and a subtitle.
-
-```{r}
-plot(z, sinz, 
-     xlab='Z = Sequence 0 to 10 by 0.5', 
-     ylab='Sin(Z)', 
-     main='Main title', 
-     sub='example subtitle')
-```
-
-We can also add a line and modify the points or markers in the plot. When you review the `help(plot)` help pages towards the bottom there is a "See Also" section which links to the functions `lines()` and `points()`. We'll use these 2 functions to add a colorful line and modify the points on our plot.
-
-```{r}
-# add a BLUE line using lines()
-lines(z,sinz,col='blue')
-
-# customize the points using points()
-# plotting character pch 23 is a filled diamond
-# col defines the color
-# bg defines the filled or background color
-points(z,sinz,pch=23,col='red',bg='black')
-```
-
-Let's compile all of the code together into a single code block to make our plot.
-
-```{r}
-# select code above, right click and "run selection"
-# or highlight code and click CTRL-R
-# specifically run the following code all together
-# the spaces and line returns added for clarity
-# Note: RStudio helps with good formatting practices
-
-plot(z, sinz,
-     xlab = 'Z = Sequence 0 to 10 by 0.5',
-     ylab = 'Sin(Z)',main='Main title',
-     sub = 'example subtitle')
-lines(z, sinz, col = 'blue')
-points(z, sinz, pch = 23, col = 'red', bg = 'black')
-
-```
-
-## The graphics "Plots" window
-
-In graphics "Plots" Window click on "Zoom". This will open the plot into a separate window. Once this window is open, you can right click and either copy the figure or save it. Within the "Plots" window itself you can also click on "Export". From here you can "Save As Image", "Save as PDF" or "Copy to Clipboard." The "Save as Image" gives you lots of options for saving the figure including: PNG, JPEG, TIFF, BMP, Metafile, SVG or EPS and you can change the figure size. _[Note: many journals request pastscript - EPS is the encapsulated postscript format.]_ When you "Copy to Clipboard" you also get options for copying the figure as either a Bitmap (pixel-by-pixel does not scale well) or a Metafile (which is a vectorized format and will scale well).
-
-## Other ways to get graphics out and saved
-
-There are command line ways to save graphical output. You can use any of the "Devices" that R supports. See `help()` on `Devices`. For example, suppose we wanted to save our figure above out as a PDF. We would use the `pdf()` device to do this. Here is the code. You'll notice I ran `dev.off()` at the end to be sure the device is turned back off. You MUST DO THIS for the final file to be created and your figure saved.
-
-```{r}
-pdf(file = "plot1.pdf")
-plot(z, sinz,
-     xlab = 'Z = Sequence 0 to 10 by 0.5',
-     ylab = 'Sin(Z)',main='Main title',
-     sub = 'example subtitle')
-lines(z, sinz, col = 'blue')
-points(z, sinz, pch = 23, col = 'red', bg = 'black')
-dev.off()
-```
-
-# EXERCISE 2
-
-Look up which "device" will create and save the plot as a JPEG. Use the commands above as your guide and create and save the figure as a JPEG formatted file.
-
-Create a second JPEG where the width is 750 pixels and the height is 500 pixels and set the background color to yellow and the quality to 50.
-
-# ANSWER KEY for EXERCISE 2
-
-```{r}
-jpeg(file = "plot1.jpg")
-plot(z, sinz,
-     xlab = 'Z = Sequence 0 to 10 by 0.5',
-     ylab = 'Sin(Z)',main='Main title',
-     sub = 'example subtitle')
-lines(z, sinz, col = 'blue')
-points(z, sinz, pch = 23, col = 'red', bg = 'black')
-dev.off()
-
-jpeg(file = "plot1yellow.jpg", 
-     width=750, height=500,
-     bg = "yellow",
-     quality = 50)
-plot(z, sinz,
-     xlab = 'Z = Sequence 0 to 10 by 0.5',
-     ylab = 'Sin(Z)',main='Main title',
-     sub = 'example subtitle')
-lines(z, sinz, col = 'blue')
-points(z, sinz, pch = 23, col = 'red', bg = 'black')
-dev.off()
-```
-
-## Adding packages
-
-Just like SAS and SPSS have a base software to which you can add additional packages and "add-ons" to add additional functionality and features to your software, R comes with a base set of functions to which you can add literally thousands of packages and hundreds of thousands of additional functions and features.
-
-As of March 8, 2016, there are 8054 packages available from [CRAN](https://cran.r-project.org/web/packages/). Many other packages are also available on Github. Hadley Wickham's "R Packages" book has some excellent information on writing and publishing your own packages. See [http://r-pkgs.had.co.nz/git.html](http://r-pkgs.had.co.nz/git.html). 
-
-Still even more packages are available from [Bioconductor](https://www.bioconductor.org/). Currently, they list over 1104 pacakges available from their repositories.
-
-### Let's install `ggplot2` package
-
-`ggplot2` is another excellent graphics package by Hadley Wickham. The main CRAN site for this package is at [https://cran.r-project.org/web/packages/ggplot2/index.html](https://cran.r-project.org/web/packages/ggplot2/index.html). Hadley also has an entire website devoted to this package at [http://ggplot2.org/](http://ggplot2.org/) and he maintains the Github repository for package development at [https://github.com/hadley/ggplot2](https://github.com/hadley/ggplot2).
-
-In general I recommend installing the most current version hosted at CRAN. We can do this using the menus "Tools"/"Install Packages". This opens a window where you can start typing in the package you want. RStudio will begin providing a list of packages that match that name and you can then pick the one you want and click "install." Take note of where on your hard drive the package is installed.
-
-This process runs the following command which will also install the `ggplot2` package. 
-
-```{r eval=FALSE}
-install.packages("ggplot2")
-```
-
-Before we can use the added functions in this new package, we must "load" the package into our R session. For this we use the `library()` command. You'll notice that we used `"` quotes when we typed in the name of the package in `install.packages()` but we leave these off when we call the `library()` command. _Yes, it is a nuiance of R..._
-
-```{r eval=FALSE}
-library(ggplot2)
-```
-
-Let's look at the help window for this new package. Run the following code. 
-
-```{r eval=FALSE}
-help(package = "ggplot2")
-```
-
-Now that we've got `ggplot2` loaded we can use these graphic options and functions to make our plot. Let's try the `qplot` function first. Look at the `help()` pages on `qplot()`. 
-
-We put in `z` and `sinz` like we did last time, but now we can add in the points and lines as "geometrical objects or `geom`s. We can also add a label for the x-axis and y-axis using the `xlab` and `ylab` options and a title using the `main` option. We do not have a subtitle option here.
-
-```{r}
-qplot(z, sinz,
-      geom = c("point", "line"),
-      xlab = 'Z = Sequence 0 to 10 by 0.5',
-      ylab = 'Sin(Z)',
-      main = 'Main title')
-title(main = 'a new main title',
-      sub = 'a subtitle added')
-```
-
-
-
 

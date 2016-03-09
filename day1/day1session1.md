@@ -1,28 +1,17 @@
 
 # Day1 Session 1
-Melinda Higgins  
-March 10, 2016  
 ---
 
-## Introduction to Git and Github
+### Goals for Session 1
 
-For this first part, go to my slide set overview at [http://melindahiggins2000.github.io/web2/teaching/CDCslidesMar2016/#1](http://melindahiggins2000.github.io/web2/teaching/CDCslidesMar2016/#1).
-
-These slides cover the information on:
-* GIT [https://git-scm.com/](https://git-scm.com/)
-* Github [https://github.com/](https://github.com/)
-* Github Desktop Client [https://desktop.github.com/](https://desktop.github.com/)
-
----
-
-## Files, Code and Data for this workshop
-
-You can download all of the data, code and files for this workshop at my Github repository at [https://github.com/melindahiggins2000/CDCRworkshopCode](https://github.com/melindahiggins2000/CDCRworkshopCode). From here click on "Download ZIP" to download everything to your local computer/storage location. You could also "fork" my repository and then "clone" it to your local computer.
-
-I also built a Github repository for this Gitbook "CDC R Workshop". Here are the relevant links:
-* my Github repository for the book [https://github.com/melindahiggins2000/CDCRworkshop](https://github.com/melindahiggins2000/CDCRworkshop)
-* the final Gitbook [https://www.gitbook.com/book/melindahiggins2000/cdcrworkshop/details](https://www.gitbook.com/book/melindahiggins2000/cdcrworkshop/details)
-* and if you'd like to create your own Gitbook [https://www.gitbook.com/](https://www.gitbook.com/)
+* Quick introduction to Git and Github
+* Quick overview of R, RStudio, how to install and get started
+* Getting acquainted with R and the RStudio interface
+* Using R codes to do math and run calculations
+* Looking up the named constants in R and getting help
+* Create different kinds of data objects in R
+* Using commands and the Global Environment to understand the data object types and classes and structure
+* Create lists and data frames built from other objects
 
 ---
 
@@ -68,106 +57,106 @@ You will notice there are 2 ways to enter an exponent: (1) you can use 2 asterix
 
 
 ```r
-> 2 + 2
+2 + 2
 ```
 
 ```
-[1] 4
-```
-
-```r
-> 3 + (4*8)
-```
-
-```
-[1] 35
+## [1] 4
 ```
 
 ```r
-> 3 + 4*8
+3 + (4*8)
 ```
 
 ```
-[1] 35
-```
-
-```r
-> 6 + (8**2) # exponents can be done using two
-```
-
-```
-[1] 70
+## [1] 35
 ```
 
 ```r
->            # asterix's ** or you can use
->            # the caret ^ symbol
-> 12^2
+3 + 4*8
 ```
 
 ```
-[1] 144
+## [1] 35
+```
+
+```r
+6 + (8**2) # exponents can be done using two
+```
+
+```
+## [1] 70
+```
+
+```r
+           # asterix's ** or you can use
+           # the caret ^ symbol
+12^2
+```
+
+```
+## [1] 144
 ```
 
 We can also put in named constants like `pi` and have R retrieve the actual stored value (at least to the numerical precision available).
 
 
 ```r
-> pi         # pi is a built in Constant
+pi         # pi is a built in Constant
 ```
 
 ```
-[1] 3.141593
+## [1] 3.141593
 ```
 
 ```r
-> 4 * pi
+4 * pi
 ```
 
 ```
-[1] 12.56637
+## [1] 12.56637
 ```
 
 `pi` is a constant built into R. Let's find out what the other constants that are in the base R package? For this we will invoke the `help()` function.
 
 
 ```r
-> help(Constants)
-> 
-> LETTERS
+help(Constants)
+
+LETTERS
 ```
 
 ```
- [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
-[18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
-```
-
-```r
-> letters
-```
-
-```
- [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-[18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 ```
 
 ```r
-> month.abb
+letters
 ```
 
 ```
- [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
-[12] "Dec"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+## [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
 ```
 
 ```r
-> month.name
+month.abb
 ```
 
 ```
- [1] "January"   "February"  "March"     "April"     "May"      
- [6] "June"      "July"      "August"    "September" "October"  
-[11] "November"  "December" 
+##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
+## [12] "Dec"
+```
+
+```r
+month.name
+```
+
+```
+##  [1] "January"   "February"  "March"     "April"     "May"      
+##  [6] "June"      "July"      "August"    "September" "October"  
+## [11] "November"  "December"
 ```
 
 ## Let's create some data objects and variables with R: numbers and vectors
@@ -176,88 +165,88 @@ In the code block below we will create several new data objects in R. As these v
 
 
 ```r
-> # ====================================
-> # create x which had 1 numeric value
-> x <- 3 * 5    # notice nothing is shown in the console
->               # you have to type the name of the object 
->               # to "see" it
-> x
+# ====================================
+# create x which had 1 numeric value
+x <- 3 * 5    # notice nothing is shown in the console
+              # you have to type the name of the object 
+              # to "see" it
+x
 ```
 
 ```
-[1] 15
-```
-
-```r
-> # create y which is a numeric (integer) vector
-> # with 12 elements
-> y <- 1:12
-> y
-```
-
-```
- [1]  1  2  3  4  5  6  7  8  9 10 11 12
+## [1] 15
 ```
 
 ```r
-> # create z a numeric vector
-> # containing a sequence of numbers from
-> # 0 to 10 in units of 0.5
-> z <- seq(0,10,.5)
-> z
+# create y which is a numeric (integer) vector
+# with 12 elements
+y <- 1:12
+y
 ```
 
 ```
- [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
-[15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12
 ```
 
 ```r
-> # the above code can also be done with the
-> # explict function arguments defined
-> # see the examples in help(seq)
-> help(seq)
-> z <- seq(from=0, to=10, by=0.5)
-> z
+# create z a numeric vector
+# containing a sequence of numbers from
+# 0 to 10 in units of 0.5
+z <- seq(0,10,.5)
+z
 ```
 
 ```
- [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
-[15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
+##  [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
+## [15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
 ```
 
 ```r
-> # create new object sinz which is a numeric
-> # vector now containing the sin (sine function) 
-> # of the z values
-> sinz <- sin(z)
+# the above code can also be done with the
+# explict function arguments defined
+# see the examples in help(seq)
+help(seq)
+z <- seq(from=0, to=10, by=0.5)
+z
+```
+
+```
+##  [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
+## [15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
+```
+
+```r
+# create new object sinz which is a numeric
+# vector now containing the sin (sine function) 
+# of the z values
+sinz <- sin(z)
 ```
 
 In addition to reviewing the objects listed in the "Global Environment" window (top right), you can also "list" the objects by running the `ls()` command. You can also get detailed listing using the `ls.str()` command which lists with the object structure details as well. This basically mimics what is provided in the "Global Environment" window. _You can ignore the `bib` object which is created as part of this Gitbook._
 
 
 ```r
-> ls()
+ls()
 ```
 
 ```
-[1] "bib"  "sinz" "x"    "y"    "z"   
+## [1] "bib"  "sinz" "x"    "y"    "z"
 ```
 
 ```r
-> ls.str()
+ls.str()
 ```
 
 ```
-bib : List of 4
- $ xie2016knitr              :Classes 'BibEntry', 'bibentry'  hidden list of 1
- $ boettiger2015knitcitations:Classes 'BibEntry', 'bibentry'  hidden list of 1
- $ wickham2016devtools       :Classes 'BibEntry', 'bibentry'  hidden list of 1
- $ 2014gitbook               :Classes 'BibEntry', 'bibentry'  hidden list of 1
-sinz :  num [1:21] 0 0.479 0.841 0.997 0.909 ...
-x :  num 15
-y :  int [1:12] 1 2 3 4 5 6 7 8 9 10 ...
-z :  num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
+## bib : List of 4
+##  $ xie2016knitr              :Classes 'BibEntry', 'bibentry'  hidden list of 1
+##  $ boettiger2015knitcitations:Classes 'BibEntry', 'bibentry'  hidden list of 1
+##  $ wickham2016devtools       :Classes 'BibEntry', 'bibentry'  hidden list of 1
+##  $ 2014gitbook               :Classes 'BibEntry', 'bibentry'  hidden list of 1
+## sinz :  num [1:21] 0 0.479 0.841 0.997 0.909 ...
+## x :  num 15
+## y :  int [1:12] 1 2 3 4 5 6 7 8 9 10 ...
+## z :  num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
 ```
 
 ## Get details on your data objects.
@@ -270,79 +259,79 @@ Depending on the data objects you can get additional info from the command line 
 
 
 ```r
-> # ========================================
-> # while you can see information about each of these
-> # objects in the Global Environment (top right)
-> # of the RStudio window, the function length()
-> # is useful for determining how many elements are
-> # in a given vector/data object.
-> # ========================================
-> length(x)
+# ========================================
+# while you can see information about each of these
+# objects in the Global Environment (top right)
+# of the RStudio window, the function length()
+# is useful for determining how many elements are
+# in a given vector/data object.
+# ========================================
+length(x)
 ```
 
 ```
-[1] 1
-```
-
-```r
-> length(y)
-```
-
-```
-[1] 12
+## [1] 1
 ```
 
 ```r
-> length(z)
+length(y)
 ```
 
 ```
-[1] 21
-```
-
-```r
-> length(sinz)
-```
-
-```
-[1] 21
+## [1] 12
 ```
 
 ```r
-> # ========================================
-> # other functions that are helpful for finding
-> # out about data objects is the str() "structure"
-> # function and the class() function.
-> # ========================================
-> str(y)
+length(z)
 ```
 
 ```
- int [1:12] 1 2 3 4 5 6 7 8 9 10 ...
+## [1] 21
 ```
 
 ```r
-> class(y)
+length(sinz)
 ```
 
 ```
-[1] "integer"
-```
-
-```r
-> str(z)
-```
-
-```
- num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
+## [1] 21
 ```
 
 ```r
-> class(z)
+# ========================================
+# other functions that are helpful for finding
+# out about data objects is the str() "structure"
+# function and the class() function.
+# ========================================
+str(y)
 ```
 
 ```
-[1] "numeric"
+##  int [1:12] 1 2 3 4 5 6 7 8 9 10 ...
+```
+
+```r
+class(y)
+```
+
+```
+## [1] "integer"
+```
+
+```r
+str(z)
+```
+
+```
+##  num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
+```
+
+```r
+class(z)
+```
+
+```
+## [1] "numeric"
 ```
 
 ## Create some more data objects including matrices and data frames
@@ -363,89 +352,89 @@ We use the `class()` function to investigate further.
  
 
 ```r
-> a1 <- c(1,2,3,4,10,11)
-> a1
+a1 <- c(1,2,3,4,10,11)
+a1
 ```
 
 ```
-[1]  1  2  3  4 10 11
-```
-
-```r
-> a2 <- c('a','g','f','r','t','s')
-> a2
-```
-
-```
-[1] "a" "g" "f" "r" "t" "s"
+## [1]  1  2  3  4 10 11
 ```
 
 ```r
-> a3 <- c(TRUE,FALSE,TRUE,TRUE,FALSE,TRUE)
-> a3
+a2 <- c('a','g','f','r','t','s')
+a2
 ```
 
 ```
-[1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
-```
-
-```r
-> a4 <- c(1,2,'a','b',TRUE,FALSE)
-> a4
-```
-
-```
-[1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
+## [1] "a" "g" "f" "r" "t" "s"
 ```
 
 ```r
-> a5 <- c(1,2,3,4,TRUE,FALSE)
-> a5
+a3 <- c(TRUE,FALSE,TRUE,TRUE,FALSE,TRUE)
+a3
 ```
 
 ```
-[1] 1 2 3 4 1 0
-```
-
-```r
-> # use the class() function to investigate these further
-> class(a1)
-```
-
-```
-[1] "numeric"
+## [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
 ```
 
 ```r
-> class(a2)
+a4 <- c(1,2,'a','b',TRUE,FALSE)
+a4
 ```
 
 ```
-[1] "character"
-```
-
-```r
-> class(a3)
-```
-
-```
-[1] "logical"
+## [1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
 ```
 
 ```r
-> class(a4)
+a5 <- c(1,2,3,4,TRUE,FALSE)
+a5
 ```
 
 ```
-[1] "character"
+## [1] 1 2 3 4 1 0
 ```
 
 ```r
-> class(a5)
+# use the class() function to investigate these further
+class(a1)
 ```
 
 ```
-[1] "numeric"
+## [1] "numeric"
+```
+
+```r
+class(a2)
+```
+
+```
+## [1] "character"
+```
+
+```r
+class(a3)
+```
+
+```
+## [1] "logical"
+```
+
+```r
+class(a4)
+```
+
+```
+## [1] "character"
+```
+
+```r
+class(a5)
+```
+
+```
+## [1] "numeric"
 ```
 
 ## Combine these vectors into different objects
@@ -455,88 +444,88 @@ We can use the commands `cbind()` to bind (or combine) vectors together columnwi
 
 
 ```r
-> # using cbind()
-> a1to5cbind <- cbind(a1,a2,a3,a4,a5)
-> a1to5cbind
+# using cbind()
+a1to5cbind <- cbind(a1,a2,a3,a4,a5)
+a1to5cbind
 ```
 
 ```
-     a1   a2  a3      a4      a5 
-[1,] "1"  "a" "TRUE"  "1"     "1"
-[2,] "2"  "g" "FALSE" "2"     "2"
-[3,] "3"  "f" "TRUE"  "a"     "3"
-[4,] "4"  "r" "TRUE"  "b"     "4"
-[5,] "10" "t" "FALSE" "TRUE"  "1"
-[6,] "11" "s" "TRUE"  "FALSE" "0"
-```
-
-```r
-> class(a1to5cbind)
-```
-
-```
-[1] "matrix"
+##      a1   a2  a3      a4      a5 
+## [1,] "1"  "a" "TRUE"  "1"     "1"
+## [2,] "2"  "g" "FALSE" "2"     "2"
+## [3,] "3"  "f" "TRUE"  "a"     "3"
+## [4,] "4"  "r" "TRUE"  "b"     "4"
+## [5,] "10" "t" "FALSE" "TRUE"  "1"
+## [6,] "11" "s" "TRUE"  "FALSE" "0"
 ```
 
 ```r
-> str(a1to5cbind)
+class(a1to5cbind)
 ```
 
 ```
- chr [1:6, 1:5] "1" "2" "3" "4" "10" "11" "a" "g" ...
- - attr(*, "dimnames")=List of 2
-  ..$ : NULL
-  ..$ : chr [1:5] "a1" "a2" "a3" "a4" ...
+## [1] "matrix"
 ```
 
 ```r
-> dim(a1to5cbind)
+str(a1to5cbind)
 ```
 
 ```
-[1] 6 5
-```
-
-```r
-> #using rbind()
-> a1to5rbind <- rbind(a1,a2,a3,a4,a5)
-> a1to5rbind
-```
-
-```
-   [,1]   [,2]    [,3]   [,4]   [,5]    [,6]   
-a1 "1"    "2"     "3"    "4"    "10"    "11"   
-a2 "a"    "g"     "f"    "r"    "t"     "s"    
-a3 "TRUE" "FALSE" "TRUE" "TRUE" "FALSE" "TRUE" 
-a4 "1"    "2"     "a"    "b"    "TRUE"  "FALSE"
-a5 "1"    "2"     "3"    "4"    "1"     "0"    
+##  chr [1:6, 1:5] "1" "2" "3" "4" "10" "11" "a" "g" ...
+##  - attr(*, "dimnames")=List of 2
+##   ..$ : NULL
+##   ..$ : chr [1:5] "a1" "a2" "a3" "a4" ...
 ```
 
 ```r
-> class(a1to5rbind)
+dim(a1to5cbind)
 ```
 
 ```
-[1] "matrix"
-```
-
-```r
-> str(a1to5rbind)
-```
-
-```
- chr [1:5, 1:6] "1" "a" "TRUE" "1" "1" "2" "g" "FALSE" ...
- - attr(*, "dimnames")=List of 2
-  ..$ : chr [1:5] "a1" "a2" "a3" "a4" ...
-  ..$ : NULL
+## [1] 6 5
 ```
 
 ```r
-> dim(a1to5rbind)
+#using rbind()
+a1to5rbind <- rbind(a1,a2,a3,a4,a5)
+a1to5rbind
 ```
 
 ```
-[1] 5 6
+##    [,1]   [,2]    [,3]   [,4]   [,5]    [,6]   
+## a1 "1"    "2"     "3"    "4"    "10"    "11"   
+## a2 "a"    "g"     "f"    "r"    "t"     "s"    
+## a3 "TRUE" "FALSE" "TRUE" "TRUE" "FALSE" "TRUE" 
+## a4 "1"    "2"     "a"    "b"    "TRUE"  "FALSE"
+## a5 "1"    "2"     "3"    "4"    "1"     "0"
+```
+
+```r
+class(a1to5rbind)
+```
+
+```
+## [1] "matrix"
+```
+
+```r
+str(a1to5rbind)
+```
+
+```
+##  chr [1:5, 1:6] "1" "a" "TRUE" "1" "1" "2" "g" "FALSE" ...
+##  - attr(*, "dimnames")=List of 2
+##   ..$ : chr [1:5] "a1" "a2" "a3" "a4" ...
+##   ..$ : NULL
+```
+
+```r
+dim(a1to5rbind)
+```
+
+```
+## [1] 5 6
 ```
 
 ### Lists
@@ -547,120 +536,120 @@ A "list" data object is simply that a list of different objects put together. TH
 
 
 ```r
-> #using list()
-> a1to5list <- list(a1,a2,a3,a4,a5)
-> a1to5list
+#using list()
+a1to5list <- list(a1,a2,a3,a4,a5)
+a1to5list
 ```
 
 ```
-[[1]]
-[1]  1  2  3  4 10 11
-
-[[2]]
-[1] "a" "g" "f" "r" "t" "s"
-
-[[3]]
-[1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
-
-[[4]]
-[1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
-
-[[5]]
-[1] 1 2 3 4 1 0
-```
-
-```r
-> class(a1to5list)
-```
-
-```
-[1] "list"
+## [[1]]
+## [1]  1  2  3  4 10 11
+## 
+## [[2]]
+## [1] "a" "g" "f" "r" "t" "s"
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+## 
+## [[4]]
+## [1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
+## 
+## [[5]]
+## [1] 1 2 3 4 1 0
 ```
 
 ```r
-> str(a1to5list)
+class(a1to5list)
 ```
 
 ```
-List of 5
- $ : num [1:6] 1 2 3 4 10 11
- $ : chr [1:6] "a" "g" "f" "r" ...
- $ : logi [1:6] TRUE FALSE TRUE TRUE FALSE TRUE
- $ : chr [1:6] "1" "2" "a" "b" ...
- $ : num [1:6] 1 2 3 4 1 0
+## [1] "list"
 ```
 
 ```r
-> dim(a1to5list)
+str(a1to5list)
 ```
 
 ```
-NULL
+## List of 5
+##  $ : num [1:6] 1 2 3 4 10 11
+##  $ : chr [1:6] "a" "g" "f" "r" ...
+##  $ : logi [1:6] TRUE FALSE TRUE TRUE FALSE TRUE
+##  $ : chr [1:6] "1" "2" "a" "b" ...
+##  $ : num [1:6] 1 2 3 4 1 0
+```
+
+```r
+dim(a1to5list)
+```
+
+```
+## NULL
 ```
 
 But we could also combine different types of obijects together. Let's combine the number `x`, the 2 vectors `z` and `sinz` and the combined list we just made `a1to5list`.
 
 
 ```r
-> alist1 <- list(x, z, sinz, a1to5list)
-> alist1
+alist1 <- list(x, z, sinz, a1to5list)
+alist1
 ```
 
 ```
-[[1]]
-[1] 15
-
-[[2]]
- [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
-[15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
-
-[[3]]
- [1]  0.00000000  0.47942554  0.84147098  0.99749499  0.90929743
- [6]  0.59847214  0.14112001 -0.35078323 -0.75680250 -0.97753012
-[11] -0.95892427 -0.70554033 -0.27941550  0.21511999  0.65698660
-[16]  0.93799998  0.98935825  0.79848711  0.41211849 -0.07515112
-[21] -0.54402111
-
-[[4]]
-[[4]][[1]]
-[1]  1  2  3  4 10 11
-
-[[4]][[2]]
-[1] "a" "g" "f" "r" "t" "s"
-
-[[4]][[3]]
-[1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
-
-[[4]][[4]]
-[1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
-
-[[4]][[5]]
-[1] 1 2 3 4 1 0
-```
-
-```r
-> str(alist1)
-```
-
-```
-List of 4
- $ : num 15
- $ : num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
- $ : num [1:21] 0 0.479 0.841 0.997 0.909 ...
- $ :List of 5
-  ..$ : num [1:6] 1 2 3 4 10 11
-  ..$ : chr [1:6] "a" "g" "f" "r" ...
-  ..$ : logi [1:6] TRUE FALSE TRUE TRUE FALSE TRUE
-  ..$ : chr [1:6] "1" "2" "a" "b" ...
-  ..$ : num [1:6] 1 2 3 4 1 0
+## [[1]]
+## [1] 15
+## 
+## [[2]]
+##  [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5
+## [15]  7.0  7.5  8.0  8.5  9.0  9.5 10.0
+## 
+## [[3]]
+##  [1]  0.00000000  0.47942554  0.84147098  0.99749499  0.90929743
+##  [6]  0.59847214  0.14112001 -0.35078323 -0.75680250 -0.97753012
+## [11] -0.95892427 -0.70554033 -0.27941550  0.21511999  0.65698660
+## [16]  0.93799998  0.98935825  0.79848711  0.41211849 -0.07515112
+## [21] -0.54402111
+## 
+## [[4]]
+## [[4]][[1]]
+## [1]  1  2  3  4 10 11
+## 
+## [[4]][[2]]
+## [1] "a" "g" "f" "r" "t" "s"
+## 
+## [[4]][[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+## 
+## [[4]][[4]]
+## [1] "1"     "2"     "a"     "b"     "TRUE"  "FALSE"
+## 
+## [[4]][[5]]
+## [1] 1 2 3 4 1 0
 ```
 
 ```r
-> class(alist1)
+str(alist1)
 ```
 
 ```
-[1] "list"
+## List of 4
+##  $ : num 15
+##  $ : num [1:21] 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...
+##  $ : num [1:21] 0 0.479 0.841 0.997 0.909 ...
+##  $ :List of 5
+##   ..$ : num [1:6] 1 2 3 4 10 11
+##   ..$ : chr [1:6] "a" "g" "f" "r" ...
+##   ..$ : logi [1:6] TRUE FALSE TRUE TRUE FALSE TRUE
+##   ..$ : chr [1:6] "1" "2" "a" "b" ...
+##   ..$ : num [1:6] 1 2 3 4 1 0
+```
+
+```r
+class(alist1)
+```
+
+```
+## [1] "list"
 ```
 
 This may seem haphazard but is actually quite ingenious. The "list" is a great way to carry around a lot of information in 1 complete/compact object. This is the most common way R provides output from functions and statistical procedures and models.
@@ -673,96 +662,96 @@ Let's make a data frame using the `data.frame()` command. You'll notice this tim
 
 
 ```r
-> #using data.frame()
-> a1to5df <- data.frame(a1,a2,a3,a4,a5)
-> a1to5df
+#using data.frame()
+a1to5df <- data.frame(a1,a2,a3,a4,a5)
+a1to5df
 ```
 
 ```
-  a1 a2    a3    a4 a5
-1  1  a  TRUE     1  1
-2  2  g FALSE     2  2
-3  3  f  TRUE     a  3
-4  4  r  TRUE     b  4
-5 10  t FALSE  TRUE  1
-6 11  s  TRUE FALSE  0
-```
-
-```r
-> class(a1to5df)
-```
-
-```
-[1] "data.frame"
+##   a1 a2    a3    a4 a5
+## 1  1  a  TRUE     1  1
+## 2  2  g FALSE     2  2
+## 3  3  f  TRUE     a  3
+## 4  4  r  TRUE     b  4
+## 5 10  t FALSE  TRUE  1
+## 6 11  s  TRUE FALSE  0
 ```
 
 ```r
-> str(a1to5df)
+class(a1to5df)
 ```
 
 ```
-'data.frame':	6 obs. of  5 variables:
- $ a1: num  1 2 3 4 10 11
- $ a2: Factor w/ 6 levels "a","f","g","r",..: 1 3 2 4 6 5
- $ a3: logi  TRUE FALSE TRUE TRUE FALSE TRUE
- $ a4: Factor w/ 6 levels "1","2","a","b",..: 1 2 3 4 6 5
- $ a5: num  1 2 3 4 1 0
+## [1] "data.frame"
 ```
 
 ```r
-> dim(a1to5df)
+str(a1to5df)
 ```
 
 ```
-[1] 6 5
+## 'data.frame':	6 obs. of  5 variables:
+##  $ a1: num  1 2 3 4 10 11
+##  $ a2: Factor w/ 6 levels "a","f","g","r",..: 1 3 2 4 6 5
+##  $ a3: logi  TRUE FALSE TRUE TRUE FALSE TRUE
+##  $ a4: Factor w/ 6 levels "1","2","a","b",..: 1 2 3 4 6 5
+##  $ a5: num  1 2 3 4 1 0
+```
+
+```r
+dim(a1to5df)
+```
+
+```
+## [1] 6 5
 ```
 
 You'll notice that something new showed up - a "factor" object type (for the 2nd and 4th columns (a2 and a4) of `a1to5df`). We can avoid this by setting `stringsAsFactors` to `FALSE` when creating the data frame.
 
 
 ```r
-> a1to5dfnf <- data.frame(a1,a2,a3,a4,a5,
-+                         stringsAsFactors = FALSE)
-> a1to5dfnf
+a1to5dfnf <- data.frame(a1,a2,a3,a4,a5,
+                        stringsAsFactors = FALSE)
+a1to5dfnf
 ```
 
 ```
-  a1 a2    a3    a4 a5
-1  1  a  TRUE     1  1
-2  2  g FALSE     2  2
-3  3  f  TRUE     a  3
-4  4  r  TRUE     b  4
-5 10  t FALSE  TRUE  1
-6 11  s  TRUE FALSE  0
-```
-
-```r
-> class(a1to5dfnf)
-```
-
-```
-[1] "data.frame"
+##   a1 a2    a3    a4 a5
+## 1  1  a  TRUE     1  1
+## 2  2  g FALSE     2  2
+## 3  3  f  TRUE     a  3
+## 4  4  r  TRUE     b  4
+## 5 10  t FALSE  TRUE  1
+## 6 11  s  TRUE FALSE  0
 ```
 
 ```r
-> str(a1to5dfnf)
+class(a1to5dfnf)
 ```
 
 ```
-'data.frame':	6 obs. of  5 variables:
- $ a1: num  1 2 3 4 10 11
- $ a2: chr  "a" "g" "f" "r" ...
- $ a3: logi  TRUE FALSE TRUE TRUE FALSE TRUE
- $ a4: chr  "1" "2" "a" "b" ...
- $ a5: num  1 2 3 4 1 0
+## [1] "data.frame"
 ```
 
 ```r
-> dim(a1to5dfnf)
+str(a1to5dfnf)
 ```
 
 ```
-[1] 6 5
+## 'data.frame':	6 obs. of  5 variables:
+##  $ a1: num  1 2 3 4 10 11
+##  $ a2: chr  "a" "g" "f" "r" ...
+##  $ a3: logi  TRUE FALSE TRUE TRUE FALSE TRUE
+##  $ a4: chr  "1" "2" "a" "b" ...
+##  $ a5: num  1 2 3 4 1 0
+```
+
+```r
+dim(a1to5dfnf)
+```
+
+```
+## [1] 6 5
 ```
 
 # EXERCISE 1
@@ -775,325 +764,67 @@ Create the data frame again and call it `df2` using the same 3 objects (`y`, `mo
 
 
 ```r
-> df1 <- data.frame(y, month.name, month.abb)
-> df1
+df1 <- data.frame(y, month.name, month.abb)
+df1
 ```
 
 ```
-    y month.name month.abb
-1   1    January       Jan
-2   2   February       Feb
-3   3      March       Mar
-4   4      April       Apr
-5   5        May       May
-6   6       June       Jun
-7   7       July       Jul
-8   8     August       Aug
-9   9  September       Sep
-10 10    October       Oct
-11 11   November       Nov
-12 12   December       Dec
-```
-
-```r
-> str(df1)
-```
-
-```
-'data.frame':	12 obs. of  3 variables:
- $ y         : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month.name: Factor w/ 12 levels "April","August",..: 5 4 8 1 9 7 6 2 12 11 ...
- $ month.abb : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+##     y month.name month.abb
+## 1   1    January       Jan
+## 2   2   February       Feb
+## 3   3      March       Mar
+## 4   4      April       Apr
+## 5   5        May       May
+## 6   6       June       Jun
+## 7   7       July       Jul
+## 8   8     August       Aug
+## 9   9  September       Sep
+## 10 10    October       Oct
+## 11 11   November       Nov
+## 12 12   December       Dec
 ```
 
 ```r
-> df2 <- data.frame(y, month.name, month.abb,
-+                   stringsAsFactors = FALSE)
-> df2
+str(df1)
 ```
 
 ```
-    y month.name month.abb
-1   1    January       Jan
-2   2   February       Feb
-3   3      March       Mar
-4   4      April       Apr
-5   5        May       May
-6   6       June       Jun
-7   7       July       Jul
-8   8     August       Aug
-9   9  September       Sep
-10 10    October       Oct
-11 11   November       Nov
-12 12   December       Dec
+## 'data.frame':	12 obs. of  3 variables:
+##  $ y         : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ month.name: Factor w/ 12 levels "April","August",..: 5 4 8 1 9 7 6 2 12 11 ...
+##  $ month.abb : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
 ```
 
 ```r
-> str(df2)
+df2 <- data.frame(y, month.name, month.abb,
+                  stringsAsFactors = FALSE)
+df2
 ```
 
 ```
-'data.frame':	12 obs. of  3 variables:
- $ y         : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month.name: chr  "January" "February" "March" "April" ...
- $ month.abb : chr  "Jan" "Feb" "Mar" "Apr" ...
-```
-
-## Ways to view or review data in objects
-
-One way to view a data object is to use the `fix()` command. Running the following code will open a basic editor window (notepad) to view the object `z` and then the object `alist`.
-
-
-```r
-> fix(z)
-> fix(alist1)
-```
-
-You've already seen that you can simply type the name of the object to view it in its entirety within the console. However, for larger datasets this can rapidly fill up your console and will significantly slow R down and may even cause R to crash or lock up. So, one way is to look aat only a small portion of the dataset such as the 1st few or the last few rows. We can do that using either the `head()` or `tail()` commands.
-
-Let's look at the `head()` and `tail()` of the `df1` object you just created in EXERCISE 1 above.
-
-
-```r
-> head(df1)
-```
-
-```
-  y month.name month.abb
-1 1    January       Jan
-2 2   February       Feb
-3 3      March       Mar
-4 4      April       Apr
-5 5        May       May
-6 6       June       Jun
+##     y month.name month.abb
+## 1   1    January       Jan
+## 2   2   February       Feb
+## 3   3      March       Mar
+## 4   4      April       Apr
+## 5   5        May       May
+## 6   6       June       Jun
+## 7   7       July       Jul
+## 8   8     August       Aug
+## 9   9  September       Sep
+## 10 10    October       Oct
+## 11 11   November       Nov
+## 12 12   December       Dec
 ```
 
 ```r
-> tail(df1)
+str(df2)
 ```
 
 ```
-    y month.name month.abb
-7   7       July       Jul
-8   8     August       Aug
-9   9  September       Sep
-10 10    October       Oct
-11 11   November       Nov
-12 12   December       Dec
+## 'data.frame':	12 obs. of  3 variables:
+##  $ y         : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ month.name: chr  "January" "February" "March" "April" ...
+##  $ month.abb : chr  "Jan" "Feb" "Mar" "Apr" ...
 ```
-
-Another way to look at a given object is to simply use the data viewer. You can either click on the little table icon next to the object in the "Global Environment" window (top right) - OR you can run the `View()` command. You'll notice this command begins with a capital `V` and not the lowercase `v`. R is CaSe sensitive so always check. Try typing in `view(df1)` and see what happens.
-
-
-```r
-> View(df1)
-```
-
-
-```r
-> view(df1)
-```
-
-```
-Error in eval(expr, envir, enclos): could not find function "view"
-```
-
-## Let's make a plot
-
-So far we have created a numeric vector of 21 numbers sequence from 0 to 10 in units of 0.5. This was object `z`. We also created `sinz` which was the sine of these numbers. Let's make a plot of these together. 
-
-
-```r
-> plot(z,sinz)
-```
-
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
-
-Let's add some more details to the plot. Look at the help pages for the plot function `help(plot)` to see what options are available. We'll use the code below to add a label to the x-axis, y-axis, plus a title and a subtitle.
-
-
-```r
-> plot(z, sinz, 
-+      xlab='Z = Sequence 0 to 10 by 0.5', 
-+      ylab='Sin(Z)', 
-+      main='Main title', 
-+      sub='example subtitle')
-```
-
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
-
-We can also add a line and modify the points or markers in the plot. When you review the `help(plot)` help pages towards the bottom there is a "See Also" section which links to the functions `lines()` and `points()`. We'll use these 2 functions to add a colorful line and modify the points on our plot.
-
-
-```r
-> # add a BLUE line using lines()
-> lines(z,sinz,col='blue')
-```
-
-```
-Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
-```
-
-```r
-> # customize the points using points()
-> # plotting character pch 23 is a filled diamond
-> # col defines the color
-> # bg defines the filled or background color
-> points(z,sinz,pch=23,col='red',bg='black')
-```
-
-```
-Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
-```
-
-Let's compile all of the code together into a single code block to make our plot.
-
-
-```r
-> # select code above, right click and "run selection"
-> # or highlight code and click CTRL-R
-> # specifically run the following code all together
-> # the spaces and line returns added for clarity
-> # Note: RStudio helps with good formatting practices
-> 
-> plot(z, sinz,
-+      xlab = 'Z = Sequence 0 to 10 by 0.5',
-+      ylab = 'Sin(Z)',main='Main title',
-+      sub = 'example subtitle')
-> lines(z, sinz, col = 'blue')
-> points(z, sinz, pch = 23, col = 'red', bg = 'black')
-```
-
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
-
-## The graphics "Plots" window
-
-In graphics "Plots" Window click on "Zoom". This will open the plot into a separate window. Once this window is open, you can right click and either copy the figure or save it. Within the "Plots" window itself you can also click on "Export". From here you can "Save As Image", "Save as PDF" or "Copy to Clipboard." The "Save as Image" gives you lots of options for saving the figure including: PNG, JPEG, TIFF, BMP, Metafile, SVG or EPS and you can change the figure size. _[Note: many journals request pastscript - EPS is the encapsulated postscript format.]_ When you "Copy to Clipboard" you also get options for copying the figure as either a Bitmap (pixel-by-pixel does not scale well) or a Metafile (which is a vectorized format and will scale well).
-
-## Other ways to get graphics out and saved
-
-There are command line ways to save graphical output. You can use any of the "Devices" that R supports. See `help()` on `Devices`. For example, suppose we wanted to save our figure above out as a PDF. We would use the `pdf()` device to do this. Here is the code. You'll notice I ran `dev.off()` at the end to be sure the device is turned back off. You MUST DO THIS for the final file to be created and your figure saved.
-
-
-```r
-> pdf(file = "plot1.pdf")
-> plot(z, sinz,
-+      xlab = 'Z = Sequence 0 to 10 by 0.5',
-+      ylab = 'Sin(Z)',main='Main title',
-+      sub = 'example subtitle')
-> lines(z, sinz, col = 'blue')
-> points(z, sinz, pch = 23, col = 'red', bg = 'black')
-> dev.off()
-```
-
-```
-png 
-  2 
-```
-
-# EXERCISE 2
-
-Look up which "device" will create and save the plot as a JPEG. Use the commands above as your guide and create and save the figure as a JPEG formatted file.
-
-Create a second JPEG where the width is 750 pixels and the height is 500 pixels and set the background color to yellow and the quality to 50.
-
-# ANSWER KEY for EXERCISE 2
-
-
-```r
-> jpeg(file = "plot1.jpg")
-> plot(z, sinz,
-+      xlab = 'Z = Sequence 0 to 10 by 0.5',
-+      ylab = 'Sin(Z)',main='Main title',
-+      sub = 'example subtitle')
-> lines(z, sinz, col = 'blue')
-> points(z, sinz, pch = 23, col = 'red', bg = 'black')
-> dev.off()
-```
-
-```
-png 
-  2 
-```
-
-```r
-> jpeg(file = "plot1yellow.jpg", 
-+      width=750, height=500,
-+      bg = "yellow",
-+      quality = 50)
-> plot(z, sinz,
-+      xlab = 'Z = Sequence 0 to 10 by 0.5',
-+      ylab = 'Sin(Z)',main='Main title',
-+      sub = 'example subtitle')
-> lines(z, sinz, col = 'blue')
-> points(z, sinz, pch = 23, col = 'red', bg = 'black')
-> dev.off()
-```
-
-```
-png 
-  2 
-```
-
-## Adding packages
-
-Just like SAS and SPSS have a base software to which you can add additional packages and "add-ons" to add additional functionality and features to your software, R comes with a base set of functions to which you can add literally thousands of packages and hundreds of thousands of additional functions and features.
-
-As of March 8, 2016, there are 8054 packages available from [CRAN](https://cran.r-project.org/web/packages/). Many other packages are also available on Github. Hadley Wickham's "R Packages" book has some excellent information on writing and publishing your own packages. See [http://r-pkgs.had.co.nz/git.html](http://r-pkgs.had.co.nz/git.html). 
-
-Still even more packages are available from [Bioconductor](https://www.bioconductor.org/). Currently, they list over 1104 pacakges available from their repositories.
-
-### Let's install `ggplot2` package
-
-`ggplot2` is another excellent graphics package by Hadley Wickham. The main CRAN site for this package is at [https://cran.r-project.org/web/packages/ggplot2/index.html](https://cran.r-project.org/web/packages/ggplot2/index.html). Hadley also has an entire website devoted to this package at [http://ggplot2.org/](http://ggplot2.org/) and he maintains the Github repository for package development at [https://github.com/hadley/ggplot2](https://github.com/hadley/ggplot2).
-
-In general I recommend installing the most current version hosted at CRAN. We can do this using the menus "Tools"/"Install Packages". This opens a window where you can start typing in the package you want. RStudio will begin providing a list of packages that match that name and you can then pick the one you want and click "install." Take note of where on your hard drive the package is installed.
-
-This process runs the following command which will also install the `ggplot2` package. 
-
-
-```r
-> install.packages("ggplot2")
-```
-
-Before we can use the added functions in this new package, we must "load" the package into our R session. For this we use the `library()` command. You'll notice that we used `"` quotes when we typed in the name of the package in `install.packages()` but we leave these off when we call the `library()` command. _Yes, it is a nuiance of R..._
-
-
-```r
-> library(ggplot2)
-```
-
-Let's look at the help window for this new package. Run the following code. 
-
-
-```r
-> help(package = "ggplot2")
-```
-
-Now that we've got `ggplot2` loaded we can use these graphic options and functions to make our plot. Let's try the `qplot` function first. Look at the `help()` pages on `qplot()`. 
-
-We put in `z` and `sinz` like we did last time, but now we can add in the points and lines as "geometrical objects or `geom`s. We can also add a label for the x-axis and y-axis using the `xlab` and `ylab` options and a title using the `main` option. We do not have a subtitle option here.
-
-
-```r
-> qplot(z, sinz,
-+       geom = c("point", "line"),
-+       xlab = 'Z = Sequence 0 to 10 by 0.5',
-+       ylab = 'Sin(Z)',
-+       main = 'Main title')
-```
-
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png)
-
-```r
-> title(main = 'a new main title',
-+       sub = 'a subtitle added')
-```
-
-```
-Error in title(main = "a new main title", sub = "a subtitle added"): plot.new has not been called yet
-```
-
-
-
 
