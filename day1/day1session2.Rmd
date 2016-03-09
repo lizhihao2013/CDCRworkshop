@@ -52,7 +52,7 @@ view(df1)
 
 So far we have created a numeric vector of 21 numbers sequence from 0 to 10 in units of 0.5. This was object `z`. We also created `sinz` which was the sine of these numbers. Let's make a plot of these together. 
 
-```{r}
+```{r plot1}
 plot(z,sinz)
 ```
 
@@ -60,7 +60,7 @@ Let's add some more details to the plot. Look at the help pages for the plot fun
 
 We can also add a line and modify the points or markers in the plot. When you review the `help(plot)` help pages towards the bottom there is a "See Also" section which links to the functions `lines()` and `points()`. We'll use these 2 functions to add a colorful line and modify the points on our plot.
 
-```{r}
+```{r plot2}
 plot(z, sinz, 
      xlab='Z = Sequence 0 to 10 by 0.5', 
      ylab='Sin(Z)', 
@@ -79,7 +79,7 @@ points(z,sinz,pch=23,col='red',bg='black')
 
 Let's compile all of the code together into a single code block to make our plot.
 
-```{r}
+```{r plot3}
 # select code above, right click and "run selection"
 # or highlight code and click CTRL-R
 # specifically run the following code all together
@@ -103,7 +103,7 @@ In graphics "Plots" Window click on "Zoom". This will open the plot into a separ
 
 There are command line ways to save graphical output. You can use any of the "Devices" that R supports. See `help()` on `Devices`. For example, suppose we wanted to save our figure above out as a PDF. We would use the `pdf()` device to do this. Here is the code. You'll notice I ran `dev.off()` at the end to be sure the device is turned back off. You MUST DO THIS for the final file to be created and your figure saved.
 
-```{r}
+```{r plot4}
 pdf(file = "plot1.pdf")
 plot(z, sinz,
      xlab = 'Z = Sequence 0 to 10 by 0.5',
@@ -122,7 +122,7 @@ Create a second JPEG where the width is 750 pixels and the height is 500 pixels 
 
 # ANSWER KEY for EXERCISE 2
 
-```{r}
+```{r plots56}
 jpeg(file = "plot1.jpg")
 plot(z, sinz,
      xlab = 'Z = Sequence 0 to 10 by 0.5',
@@ -181,7 +181,7 @@ Now that we've got `ggplot2` loaded we can use these graphic options and functio
 
 We put in `z` and `sinz` like we did last time, but now we can add in the points and lines as "geometrical objects or `geom`s. We can also add a label for the x-axis and y-axis using the `xlab` and `ylab` options and a title using the `main` option. We do not have a subtitle option here.
 
-```{r}
+```{r plot7}
 qplot(z, sinz,
       geom = c("point", "line"),
       xlab = 'Z = Sequence 0 to 10 by 0.5',
@@ -193,7 +193,7 @@ qplot(z, sinz,
 
 One of the nice things about `ggplot2` is the ability to build your plot with layers. The commands can be added in layers using the plus sign `+` to append.
 
-```{r}
+```{r plot8}
 
 df2 <- data.frame(z,sinz)
 
@@ -211,7 +211,7 @@ ggplot(df2, aes(x=z, y=sinz)) +
 
 Compare to our previous plot using the base R plot commands.
 
-```{r}
+```{r plot9}
 
 plot(z, sinz,
      xlab = 'Z = Sequence 0 to 10 by 0.5',
@@ -226,21 +226,21 @@ points(z, sinz, pch = 23, col = 'red', bg = 'black')
 
 1. create the new graphical object with `ggplot()` and assign it to a plot object we'll call `p`.
 
-```{r}
+```{r plot10}
 p <- ggplot(df2, aes(x=z, y=sinz))
 p
 ```
 
 2. Add the geometrical object or `geom` that is a line using the `geom_line()` function. You could assign colors or other "aesthetics" to the line you are adding like line type.
 
-```{r}
+```{r plot11}
 p <- p + geom_line(colour = "red", linetype = "dashed")
 p
 ```
 
 3. Add points with various aesthetics for the marker or point shape, as well as changing the color outline and fill color.
 
-```{r}
+```{r plot12}
 p <- p + geom_point(shape = 23,
                     colour = "red",
                     fill = "black")
@@ -249,7 +249,7 @@ p
 
 4. Next add a label for the x-axis using `xlab`, y-axis using `ylab` and add a title using `ggtitle`.
 
-```{r}
+```{r plot13}
 p <- p + xlab("z is sequence from 0 to 10 in units of 0.5") +
   ylab("Sin(z)") + 
   ggtitle("Here is a Main Title")
@@ -258,7 +258,7 @@ p
 
 5. You can also various themes to the plot. Here is one example adding the `theme_light()`.
 
-```{r}
+```{r plot14}
 p <- p + theme_light()
 p
 ```
@@ -267,7 +267,7 @@ p
 
 Jeffrey Arnold created the `ggthemes` package which has extra themes, geoms, and scales for 'ggplot2'. This package provides 'ggplot2' themes and scales that replicate the look of plots by Edward Tufte, Stephen Few, 'Fivethirtyeight', 'The Economist', 'Stata', 'Excel', and 'The Wall Street Journal', among others. Provides 'geoms' for Tufte's box plot and range frame. There is a helpful overview "vignette" at [https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html)
 
-```{r}
+```{r plot15to18}
 library(ggthemes)
 p <- p + theme_economist() + ggtitle("The Economist Theme")
 p
