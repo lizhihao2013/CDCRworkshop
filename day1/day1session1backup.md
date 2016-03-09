@@ -229,7 +229,10 @@ fix(z)
 ```
 
 ```
-[1] "bib"  "sinz" "x"    "y"    "z"   
+ [1] "a1"         "a1to5cbind" "a1to5df"    "a1to5dfnf"  "a1to5list" 
+ [6] "a1to5rbind" "a2"         "a3"         "a4"         "a5"        
+[11] "alist1"     "bib"        "df1"        "df2"        "sinz"      
+[16] "x"          "y"          "z"         
 ```
 
 ```r
@@ -750,19 +753,27 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_2.1.0       knitcitations_1.0.7 Rgitbook_0.9       
+ [1] plyr_1.8.3          dplyr_0.4.3         foreign_0.8-66     
+ [4] readxl_0.1.0        knitr_1.12.3        ggthemes_3.0.2     
+ [7] xkcd_0.0.5          extrafont_0.17      ggplot2_2.1.0      
+[10] knitcitations_1.0.7 Rgitbook_0.9       
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.3       knitr_1.12.3      magrittr_1.5     
- [4] devtools_1.10.0   munsell_0.4.2     colorspace_1.2-6 
- [7] R6_2.1.2          bibtex_0.4.0      stringr_1.0.0    
-[10] httr_1.1.0        plyr_1.8.3        tools_3.2.3      
-[13] grid_3.2.3        gtable_0.1.2      git2r_0.13.1     
-[16] digest_0.6.9      RJSONIO_1.3-0     RefManageR_0.10.5
-[19] formatR_1.2.1     bitops_1.0-6      RCurl_1.95-4.7   
-[22] curl_0.9.5        memoise_1.0.0     evaluate_0.8     
-[25] labeling_0.3      stringi_1.0-1     scales_0.3.0     
-[28] XML_3.98-1.3      lubridate_1.5.0  
+ [1] Rcpp_0.12.3         RColorBrewer_1.1-2  formatR_1.2.1      
+ [4] highr_0.5.1         bitops_1.0-6        tools_3.2.3        
+ [7] rpart_4.1-10        digest_0.6.9        memoise_1.0.0      
+[10] lubridate_1.5.0     evaluate_0.8        gtable_0.1.2       
+[13] lattice_0.20-33     bibtex_0.4.0        DBI_0.3.1          
+[16] parallel_3.2.3      gridExtra_2.2.1     Rttf2pt1_1.3.3     
+[19] cluster_2.0.3       RefManageR_0.10.5   httr_1.1.0         
+[22] stringr_1.0.0       devtools_1.10.0     nnet_7.3-11        
+[25] grid_3.2.3          R6_2.1.2            XML_3.98-1.3       
+[28] survival_2.38-3     RJSONIO_1.3-0       latticeExtra_0.6-28
+[31] Formula_1.2-1       extrafontdb_1.0     magrittr_1.5       
+[34] codetools_0.2-14    scales_0.3.0        Hmisc_3.17-2       
+[37] splines_3.2.3       assertthat_0.1      colorspace_1.2-6   
+[40] labeling_0.3        stringi_1.0-1       acepack_1.3-3.3    
+[43] RCurl_1.95-4.7      munsell_0.4.2      
 ```
 
 
