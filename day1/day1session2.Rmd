@@ -282,7 +282,7 @@ p
 p <- p + theme_tufte() + ggtitle("The Edward Tufte Theme")
 p
 
-p <- p + theme_wsj() + ggtitle("The Wall Street Journal Theme")
+p <- p + theme_wsj() + ggtitle("The WSJ Theme")
 p
 
 ```
