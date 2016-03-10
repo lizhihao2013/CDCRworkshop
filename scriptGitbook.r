@@ -92,10 +92,6 @@ library(knitcitations)
 library(ggplot2)
 library(ggthemes)
 library(knitr)
-#library(xtable)
-# library(rJava)
-# library(xlsx) - has java problems
-# library(gdata) - needs perl
 library(readxl)
 library(foreign)
 library(plyr)

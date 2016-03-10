@@ -368,7 +368,7 @@ p
 ![plot of chunk plot15to18](figure/plot15to18-3.png)
 
 ```r
-p <- p + theme_wsj() + ggtitle("The Wall Street Journal Theme")
+p <- p + theme_wsj() + ggtitle("The WSJ Theme")
 p
 ```
 
@@ -423,17 +423,17 @@ sessionInfo()
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] lubridate_1.5.0     gplots_2.17.0       multcomp_1.4-4     
-##  [4] TH.data_1.0-7       MASS_7.3-45         mvtnorm_1.0-5      
-##  [7] effects_3.0-7       corrgram_1.8        car_2.1-1          
-## [10] mapproj_1.2-4       maps_3.1.0          gmodels_2.16.2     
-## [13] vcd_1.4-1           doBy_4.5-14         psych_1.5.8        
-## [16] pastecs_1.3-18      boot_1.3-17         Hmisc_3.17-2       
-## [19] Formula_1.2-1       survival_2.38-3     lattice_0.20-33    
-## [22] sas7bdat_0.5        dplyr_0.4.3         plyr_1.8.3         
-## [25] foreign_0.8-66      readxl_0.1.0        knitr_1.12.3       
-## [28] ggthemes_3.0.2      ggplot2_2.1.0       knitcitations_1.0.7
-## [31] Rgitbook_0.9       
+##  [1] leaps_2.9           lubridate_1.5.0     gplots_2.17.0      
+##  [4] multcomp_1.4-4      TH.data_1.0-7       MASS_7.3-45        
+##  [7] mvtnorm_1.0-5       effects_3.0-7       corrgram_1.8       
+## [10] car_2.1-1           mapproj_1.2-4       maps_3.1.0         
+## [13] gmodels_2.16.2      vcd_1.4-1           doBy_4.5-14        
+## [16] psych_1.5.8         pastecs_1.3-18      boot_1.3-17        
+## [19] Hmisc_3.17-2        Formula_1.2-1       survival_2.38-3    
+## [22] lattice_0.20-33     sas7bdat_0.5        dplyr_0.4.3        
+## [25] plyr_1.8.3          foreign_0.8-66      readxl_0.1.0       
+## [28] knitr_1.12.3        ggthemes_3.0.2      ggplot2_2.1.0      
+## [31] knitcitations_1.0.7 Rgitbook_0.9       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] nlme_3.1-125        bitops_1.0-6        pbkrtest_0.4-6     

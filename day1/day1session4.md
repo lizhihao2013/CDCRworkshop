@@ -17,11 +17,6 @@
 
 ---
 
-
-
-
-
-
 ## Create some new variables and save the output
 
 In the datafile we have weights measures at 2 time points and we have height. We can use this data to compute BMI. Since weight is in pounds and height is in inches, we can use the following formula:

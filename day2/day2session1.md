@@ -1,37 +1,106 @@
 
-# Day1 Session 1
-Melinda Higgins  
-March 4, 2016  
+# Day 2 Session 1
+---
 
+### Goals for Session 1
 
+Session 1
+* Q&A, clarification and discussions to review day 1 materials
+* summary stats
+* selecting variables
+* selecting subset of rows
+* selecting subsets of rows and columns
+* create a function
+* use sapply to use the new function
+* look at various ways to summarize the variables
+* options in Hmisc, pastecs and psych packages
+* call same function name in different packages - avoiding masking issues
 
-## R Markdown
+---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# summary stats
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+help(package = "datasets")
+data()
+mtcars
+str(mtcars)
 
+summary(mtcars[,c("mpg","cyl","disp","hp")])
 
-```r
-summary(cars)
-```
+mycars <- mtcars
+mycars$cyl <- as.factor(mtcars$cyl)
 
-```
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-```
+summary(mycars[,c("mpg","cyl","disp","hp")])
 
-## Including Plots
+mycarsNA <- mycars
+mycarsNA[(mycarsNA$cyl)==6,"mpg"] <- NA
 
-You can also embed plots, for example:
+summary(mycarsNA[,c("mpg","cyl","disp","hp")])
 
-![](day1session1_files/figure-html/pressure-1.png)
+fivenum(mycars$mpg)
+quantile(mycars$mpg, c(.25,.75))
+fivenum(mycarsNA$mpg)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+mystats <- function(x, na.omit=FALSE){
+  if(na.omit)
+    x <- x[!is.na(x)]
+  m <- mean(x)
+  n <- length(x)
+  s <- sd(x)
+  md <- mad(x)
+  q5 <- quantile(x, .05)
+  q25 <- quantile(x, .25)
+  q75 <- quantile(x, .75)
+  q95 <- quantile(x, .95)
+  return(c(n=n, mean=m, stdev=s, MAD=md, 
+           q5, q25, 
+           q75, q95))
+}
+
+mystats(mycars$mpg)
+mystats(mycarsNA$mpg, na.omit=TRUE)
+
+# let's apply these to a range of variables
+
+myvars <- c("mpg","cyl","disp","hp")
+sapply(mycars[myvars], fivenum)
+sapply(mtcars[myvars], fivenum)
+
+out <- sapply(mtcars[myvars], fivenum)
+kable(out)
+
+sapply(mtcars[myvars], mystats)
+out <- sapply(mtcars[myvars], mystats)
+kable(out)
+
+# select only rows of cars that have 6 cylinders
+d1 <- mtcars[mtcars$cyl==6,myvars]
+sapply(d1, mystats)
+
+# select cars that have 4 cylinders (cyl==4) and 
+# are automatic transmission (am==0)
+d2 <- mtcars[(mtcars$cyl==4 & mtcars$am==0),myvars]
+sapply(d2, mystats)
+
+# can also use the subset() function
+d3 <- subset(mtcars, cyl==4 & am==0, select=myvars)
+d3
+
+# Hmisc package
+library(Hmisc)
+describe(mtcars[myvars])
+describe(mycarsNA[myvars])
+
+# pastecs package
+library(pastecs)
+stat.desc(mtcars[myvars])
+
+# psych package
+library(psych)
+describe(mtcars[myvars])
+
+# avoid masking problems using 2 colons ::
+Hmisc::describe(mtcars[myvars])
+psych::describe(mtcars[myvars])
 
 
