@@ -6,14 +6,42 @@
 
 <hr>
 
-## DAY 1 Sessions and Objectives
+## DAY 2 Sessions and Objectives
 
 1. Session 1
-    + objective: Be able to open and work with R and RStudio on your own computer (or one you have access to) - initial familiarization with R, RStudio interface and R Environment  
+    + Q&A, clarification and discussions to review day 1 materials
+    + summary stats
+    + selecting variables
+    + selecting subset of rows
+    + selecting subsets of rows and columns
+    + create a function
+    + use sapply to use the new function
+    + look at various ways to summarize the variables
+    + options in Hmisc, pastecs and psych packages
+    + call same function name in different packages - avoiding masking issues
+
 2. Session 2
-    + objective: Initial understanding of what "packages" are, how to load them and use them  
+    + describing data summaries BY groups
+    + frequencies and contingency tables - with the vcd package
+    + running a chisq test, fisher's exact test 
+    + and the Cochran-Mantel-Haenszel Chi-Squared Test
+    + plots of categorical data - spinograms and mosaic plots
+    + correlations matrices and tests
+    + sctterplot matrices
+    + corrgrams
+    + t-tests and boxplots
+
 3. Session 3
-    + objective: Initial understanding of where and how to get help  
+    + linear models - multiple regression - models comparison
+    + short introduction to regression subsets
+    + testing interaction effects and visualizing them
+    + simple one-way anova 
+    + ANOVA means plots with CIs
+    + a basic map example - cholopleth map of crime data in US
+    + very brief introduction to date/time handling
+
+4. Session 4
+    + Write an Analysis Report Using RMarkdown  
 
 ### Agenda Day 2
 - - -

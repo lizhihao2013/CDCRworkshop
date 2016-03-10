@@ -1,4 +1,4 @@
-```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
 opts_knit$set(base.dir='./', fig.path='', out.format='md')
 opts_chunk$set(prompt=TRUE, comment='', results='markup')
 # See yihui.name/knitr/options for more Knitr options.
@@ -7,39 +7,133 @@ opts_chunk$set(prompt=TRUE, comment='', results='markup')
 
 # end setup chunk
 ```
-# Day1 Session 1
-Melinda Higgins  
-March 4, 2016  
+# Day 2 Session 1
+---
 
+### Session 4 - Writing a Report in RMarkdown
 
+Using the codes we learned so far, let's compile these into a cohesive report.
 
-## R Markdown
+1. Create an RMarkdown file - go to the menu "File"/"New File"/"RMarkdown". For now let's create a HTML formatted file (`*.HTML`). We'll run through this again at the end and also make a MS Word document (`*.DOC`).
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+2. This will create a template that we'll experiment with.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+3. We'll be adding code chunks to perform certain actions and the output will be captured in our report.
 
-
-```r
-summary(cars)
-```
+4. Read in the dataset
 
 ```
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
+data.csv <- read.csv(file="Dataset_01_comma.csv")
+data.csv
 ```
 
-## Including Plots
+```{r echo=FALSE}
+data.csv <- read.csv(file="C:/MyGithub/CDCRworkshop/datasets/Dataset_01_comma.csv")
+kable(data.csv)
 
-You can also embed plots, for example:
+```
 
-![](day1session1_files/figure-html/pressure-1.png)
+5. Correct the typo for height, compute the BMIs and make the histogram plot
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```
+data.csv[18,"Height"] <- 5.6
+data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
+hist(data.csv$bmiPRE, freq=FALSE)
+lines(density(data.csv$bmiPRE))
+```
+
+```{r plot1d2s4, echo=FALSE}
+data.csv[18,"Height"] <- 5.6
+data.csv$bmiPRE <- (data.csv$WeightPRE*703)/((data.csv$Height*12)**2)
+data.csv$bmiPOST <- (data.csv$WeightPOST*703)/((data.csv$Height*12)**2)
+hist(data.csv$bmiPRE, freq=FALSE)
+lines(density(data.csv$bmiPRE))
+
+```
+
+
+6. Let's add our custom summary stats. We'll also save the output and use `kable()` from the knitr package to make a prettier table in markdown format.
+
+```
+mystats <- function(x, na.omit=FALSE){
+  if(na.omit)
+    x <- x[!is.na(x)]
+  m <- mean(x)
+  n <- length(x)
+  s <- sd(x)
+  md <- mad(x)
+  q5 <- quantile(x, .05)
+  q25 <- quantile(x, .25)
+  q75 <- quantile(x, .75)
+  q95 <- quantile(x, .95)
+  return(c(n=n, mean=m, stdev=s, MAD=md, 
+           q5, q25, 
+           q75, q95))
+}
+
+out <- sapply(data.csv[,c(9,10)], mystats)
+kable(out)
+```
+
+```{r echo=FALSE}
+mystats <- function(x, na.omit=FALSE){
+  if(na.omit)
+    x <- x[!is.na(x)]
+  m <- mean(x)
+  n <- length(x)
+  s <- sd(x)
+  md <- mad(x)
+  q5 <- quantile(x, .05)
+  q25 <- quantile(x, .25)
+  q75 <- quantile(x, .75)
+  q95 <- quantile(x, .95)
+  return(c(n=n, mean=m, stdev=s, MAD=md, 
+           q5, q25, 
+           q75, q95))
+}
+
+out <- sapply(data.csv[,c(9,10)], mystats)
+kable(out)
+```
+
+
+6. Let's also add the linear fits to a plot of the POST vs PRE BMI values
+
+```
+plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
+abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
+lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
+```
+
+```{r plot2d2s4, echo=FALSE}
+plot(data.csv$bmiPRE, data.csv$bmiPOST, "p")
+abline(lm(data.csv$bmiPOST ~ data.csv$bmiPRE), col="red")
+lines(lowess(data.csv$bmiPRE, data.csv$bmiPOST), col="blue")
+```
+
+
+7. Linear fit output
+
+```
+fit1 <- lm(bmiPOST ~ bmiPRE, data=data.csv)
+fit1
+summary(fit1)
+coef(fit1)
+anova(fit1)
+```
+
+```{r echo=FALSE}
+fit1 <- lm(bmiPOST ~ bmiPRE, data=data.csv)
+fit1
+summary(fit1)
+coef(fit1)
+anova(fit1)
+```
+
+
+
+
+
 
 

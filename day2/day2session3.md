@@ -1,37 +1,158 @@
 
-# Day1 Session 1
-Melinda Higgins  
-March 4, 2016  
+# Day 2 Session 1
+---
+
+### Goals for Session 3
+
+Session 3
+* linear models - multiple regression - models comparison
+* short introduction to regression subsets
+* testing interaction effects and visualizing them
+* simple one-way anova 
+* ANOVA means plots with CIs
+* a basic map example - cholopleth map of crime data in US
+* very brief introduction to date/time handling
+
+---
+
+# session 3 =========================
+
+# linear models
+head(state.x77)
+colnames(state.x77)
+states <- as.data.frame(state.x77[,1:5])
+names(states)
+q <- names(states)[4]
+names(states)[4] <- "LifeExp"
+names(states)
+
+fit1 <- lm(Murder ~ ., data=states)
+summary(fit1)
+fit2 <- lm(Murder ~ Population + Income + Illiteracy, data=states)
+summary(fit2)
+
+anova(fit1, fit2)
+
+fit3 <- lm(Murder ~ LifeExp, data=states)
+summary(fit3)
+
+# try variable selection methods with stepAIC in MASS package
+fit1 <- lm(Murder ~ ., data=states)
+summary(fit1)
+stepAIC(fit1, direction="backward")
+stepAIC(fit1, direction="both")
+
+# library leaps - all subsets regression
+library(leaps)
+
+leaps <- regsubsets(Murder ~ ., data=states, nbest=4)
+plot(leaps, scale="adjr2")
+library(car)
+subsets(leaps, statistic="cp",
+        main="Cp Plot for All subsets regression")
+abline(1,1,lty=2,col="red")
 
 
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# looking at interaction effects
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+fit <- lm(mpg ~ hp + wt + hp:wt, data=mtcars)
+summary(fit)
+library(effects)
+plot(effect(term="hp:wt", 
+            mod=fit,
+            vcov.=vcov, 
+            xlevels=list(wt=c(2.2, 3.2, 4.2))),
+     multiline=TRUE)
 
+# simple anova
 
-```r
-summary(cars)
-```
+library(multcomp)
+head(cholesterol)
+str(cholesterol)
+table(cholesterol$trt)
 
-```
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-```
+df <- cholesterol
 
-## Including Plots
+aggregate(df$response, 
+          by=list(df$trt), 
+          FUN=mean)
 
-You can also embed plots, for example:
+aggregate(df$response, 
+          by=list(df$trt), 
+          FUN=sd)
 
-![](day1session1_files/figure-html/pressure-1.png)
+mystats <- function(x){
+  m <- mean(x)
+  n <- length(x)
+  s <- sd(x)
+  return(c(n=n, mean=m, stdev=s))
+}
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+aggregate(df$response, 
+          by=list(df$trt), 
+          FUN=mystats)
 
+fit <- aov(response ~ trt, df)
+summary(fit)
 
+library(gplots)
+plotmeans(response ~ trt, data=df, 
+          xlab="Treatment Groups",
+          ylab="Response",
+          main="Means Plot with 95% CI's")
+
+# map example
+
+head(USArrests)
+aa <- tolower(rownames(USArrests))
+aa2 <- rownames(USArrests)
+crimes <- data.frame(state = tolower(rownames(USArrests)),
+                     USArrests)
+head(crimes)
+
+library(maps)
+states_map <- map_data("state")
+crime_map <- merge(states_map, crimes, by.x="region", by.y="state")
+head(crime_map)
+
+library(plyr)
+library(mapproj)
+crime_map2 <- arrange(crime_map, group, order)
+head(crime_map2)
+
+ggplot(crime_map2, aes(x=long, y=lat, group=group, fill=Assault)) +
+  geom_polygon(colour="black") +
+  scale_fill_gradient2(low="#559999", mid="grey90", high="#BB650B",
+                       midpoint=median(crimes$Assault)) +
+  expand_limits(x=states_map$long, y=states_map$lat) +
+  coord_map("polyconic")
+
+# do one for Murder
+
+ggplot(crime_map2, aes(x=long, y=lat, group=group, fill=Murder)) +
+  geom_polygon(colour="black") +
+  scale_fill_gradient2(low="#559999", mid="grey90", high="#BB650B",
+                       midpoint=median(crimes$Murder)) +
+  expand_limits(x=states_map$long, y=states_map$lat) +
+  coord_map("polyconic")
+
+# dates and times with lubridate
+
+Sys.Date()
+date()
+today <- Sys.Date()
+dob <- as.Date("1921-07-06") # Nancy Reagan's birthday
+difftime(today, dob, units="weeks")
+as.numeric(difftime(today, dob, units="days")/365)
+
+diff1 <- today - dob
+diff1
+diff1/365
+
+library(lubridate)
+as.duration(diff1)
+year(today) - year(dob)
+wday(dob)
+wday(dob, label=TRUE)
